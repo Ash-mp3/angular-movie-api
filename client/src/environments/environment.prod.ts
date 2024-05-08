@@ -1,5 +1,5 @@
 export const environment: any = {
-    apiUrl: 'dev test',
+    apiUrl: 'prod test',
     firebaseConfig: {
         apiKey: 'AIzaSyBXvc8NZ_NeYUt3URa6TCsOLEGXXNIf1Tg',
         authDomain: 'angular-movie-api.firebaseapp.com',

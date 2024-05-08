@@ -14,6 +14,10 @@
             </mat-card-content>
         </mat-card>
     </div>
+    <div *ngFor="let movie of movies" routerLink="/details/2">
+        {{movie.title}}
+        <img [src]="posterUrl + movie.poster_path">
+    </div>
     <div class="flex justify-center py-4">
         <mat-divider class="bg-red-500 border p-0.5 rounded w-[90%] "></mat-divider>
     </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
@@ -6,13 +6,35 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
+import { MoviesService } from '../../services/movies.service';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
 @Component({
   selector: 'app-popular-movies',
   standalone: true,
-  imports: [MatInputModule, MatDividerModule, MatCardModule,MatToolbarModule,MatIconModule,MatFormFieldModule],
+  imports: [MatInputModule, MatDividerModule, MatCardModule,MatToolbarModule,MatIconModule,MatFormFieldModule,
+    CommonModule, RouterModule
+  ],
   templateUrl: './popular-movies.component.html',
   styleUrl: './popular-movies.component.css'
 })
-export class PopularMoviesComponent {
+export class PopularMoviesComponent implements OnInit {
+
+  movies: any[] = []
+  
+  posterUrl = 'https://image.tmdb.org/t/p/w500'
+
+  constructor( private moviesService: MoviesService ){
+
+  }
+
+  ngOnInit(): void {
+    this.moviesService.getMovies().subscribe(contents => {
+        this.movies = contents
+        console.log(contents)
+      }
+    )
+  }
 
 }
