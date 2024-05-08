@@ -49,7 +49,6 @@ movieRouter.get("/getMovies", (req, res) => {
     //time in milliseconds since last movie update
     const timeSinceLastMovieUpdate = Date.now() - lastMovieUpdate
 
-    console.log("timeSinceLastMovieUpdate: ", timeSinceLastMovieUpdate)
     //if the amount of time since last movie update is greater than 1 day, update movies before sending the response
     if(timeSinceLastMovieUpdate > millisecondsInDay ){
         updateMovies().then(() => {
