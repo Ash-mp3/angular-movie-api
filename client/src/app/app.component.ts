@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { LoginComponent } from './component/login/login.component';
 import { PopularMoviesComponent } from './component/popular-movies/popular-movies.component';
 
-import { environment } from '../environments/environment';
+import { environment } from '../environments/environment.dev';
 
 @Component({
   selector: 'app-root',
