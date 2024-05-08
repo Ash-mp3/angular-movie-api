@@ -10,4 +10,6 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'client';
+
+  posterUrl = 'https://image.tmdb.org/t/p/w500'
 }
