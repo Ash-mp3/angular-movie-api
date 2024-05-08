@@ -1,1 +1,9 @@
-<p>movie-details works!</p>
+<div *ngIf="movie" class="movie">
+    <img class=" w-56 " [src]="posterUrl + movie.poster_path">
+    <h1>{{movie.title}}</h1>
+    <div class="">
+
+    </div>
+
+</div>
+

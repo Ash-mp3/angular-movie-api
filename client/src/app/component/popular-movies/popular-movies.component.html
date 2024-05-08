@@ -14,7 +14,7 @@
             </mat-card-content>
         </mat-card>
     </div>
-    <div *ngFor="let movie of movies" routerLink="/details/2">
+    <div *ngFor="let movie of movies" [routerLink]="'/details/' + movie.id">
         {{movie.title}}
         <img [src]="posterUrl + movie.poster_path">
     </div>

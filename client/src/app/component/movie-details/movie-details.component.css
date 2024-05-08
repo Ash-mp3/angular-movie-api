@@ -1,0 +1,3 @@
+.movie{
+    @apply flex flex-col items-center bg-primary;
+}
