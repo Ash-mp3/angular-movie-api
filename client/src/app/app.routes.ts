@@ -8,5 +8,6 @@ export const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'popular', component: PopularMoviesComponent},
     {path: 'details/:id', component: MovieDetailsComponent},
-    {path: 'watchlist', component: WatchlistComponent},
+    { path: 'watchlist', component: WatchlistComponent },
+    { path: '**', component: LoginComponent} 
 ];
