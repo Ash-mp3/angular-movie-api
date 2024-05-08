@@ -1,0 +1,6 @@
+span{
+    text-shadow: 2px 2px 2px #d62828;
+}
+mat-toolbar{
+    @apply flex justify-between;
+}
