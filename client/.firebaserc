@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "angular-movie-api": {
+      "hosting": {
+        "client": [
+          "angular-movie-api"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "angular-movie-api"
+  }
+}

@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { LoginComponent } from './component/login/login.component';
+import { PopularMoviesComponent } from './component/popular-movies/popular-movies.component';
 
 import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, LoginComponent, PopularMoviesComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
