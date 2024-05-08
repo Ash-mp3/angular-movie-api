@@ -3,7 +3,7 @@ import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
 import { importProvidersFrom } from '@angular/core';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { environment } from './environments/environment.development';
+import { environment } from './environments/environment.dev';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore } from 'firebase/firestore';
 
