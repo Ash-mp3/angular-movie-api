@@ -1,9 +1,10 @@
 #loginCard {
-    height: 100%;
+    height: 80vh;
+    width: 50vw;
 }
 
 .cardHeader {
-    height: 30%;
+    height: 20%;
 }
 
 h1 {
@@ -13,21 +14,36 @@ h1 {
 }
 
 .cardContent {
-    padding-top: 25px;
-    padding-bottom: 25px;
-}
-
-.cardContent form{
-    height: 100%;;
+ padding: 2.5rem 1.5rem ;
+ height: 40%;
 }
 
 .loginForm input{
    border-radius: 5px;
-    padding: 15px 16px;
+   padding: 15px 16px;
+   margin-bottom: 30px;
+   background-color: #1E2F23;
 }
 
+
 .cardActions {
-    height: 30%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+.cardActions button {
+    height: 3rem;
+    font-size: 1.2rem;
+    width: 100%;
+    margin: 0 1.5rem;
+    border-radius: 30px;
+}
+
+#horizontalLine {
+    margin: 2rem .5rem;
+    border: 1px solid black;
+    width: 100%;
 }
 
 
