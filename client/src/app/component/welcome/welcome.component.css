@@ -7,20 +7,10 @@
 }
 
 .tabGroup {
-    background-color: #757575;
-    width: 40%;
-    height: 80%;
+    border-radius: 10px;
+    
 }
 
-
-
-#loginCard {
-    background-color: #757575;
-    width: 40%;
-    height: 80%;
-}
-
-.loginTab {
-    width: 100%;
+.loginTab:first-child {
     height: 100%;
 }

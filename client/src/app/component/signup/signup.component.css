@@ -1,3 +1,12 @@
+#signupCard {
+    height: 80vh;
+    width: 50vw;
+}
+
+.cardHeader {
+    height: 20%;
+}
+
 h1 {
     font-size: 3rem;
     padding-right: 50px;
@@ -5,15 +14,36 @@ h1 {
 }
 
 .cardContent {
-    padding-top: 25px;
-    padding-bottom: 25px;
-}
+    padding: 2.5rem 1.5rem ;
+    height: 40%;
+   }
 
-.cardContent form{
-    height: 100%;;
-}
 
-.loginForm input{
-   border-radius: 5px;
+   .loginForm input{
+    border-radius: 5px;
     padding: 15px 16px;
-}
+    margin-bottom: 30px;
+    background-color: #1E2F23;
+ }
+ 
+ 
+ .cardActions {
+     height: 40%;
+     display: flex;
+     flex-direction: column;
+ }
+ 
+ .cardActions button {
+     height: 3rem;
+     font-size: 1.2rem;
+     width: 100%;
+     margin: 0 1.5rem;
+     border-radius: 30px;
+ }
+ 
+ #horizontalLine {
+     margin: 2rem .5rem;
+     border: 1px solid black;
+     width: 100%;
+ }
+ 
