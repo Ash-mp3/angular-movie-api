@@ -1,12 +1,51 @@
 .movie-card{
-    @apply flex flex-1 flex-col items-center p-10 bg-secondary;
+    @apply flex flex-1 flex-col items-center p-10 bg-secondaryAccent;
 }
 .title{
-    @apply text-primary text-xl font-bold;
+    @apply text-primary text-2xl font-bold;
 }
 .nav-title{
-    @apply text-contrastSecondary text-xl font-bold;
+    @apply text-primaryLight text-xl font-bold;
 }
 .sideNav{
-    @apply bg-primary flex flex-col items-center overflow-y-scroll p-3 
+    @apply bg-primary flex flex-col items-center p-2;
+    overflow-y: scroll;
+    max-height: 100vh;
 }
+.sideNav *{
+    opacity: 0;
+}
+
+@media screen and (max-width: 600px){
+    .movie-details-page{
+        flex-direction: column-reverse;
+    }
+    .sideNav{
+        max-height: none;
+        overflow-y: visible;
+    }
+}
+
+
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateX(-200px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .sideNav * {
+    opacity: 0;
+    transform: translateX(-200px);
+    animation: none; 
+  }
+  
+  .sideNav.nav-animation * {
+    animation: fadeIn 1s forwards; 
+    animation-delay: calc(var(--animation-delay)*.2);
+  }
