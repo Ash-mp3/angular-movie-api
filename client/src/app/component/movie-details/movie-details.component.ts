@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
 export class MovieDetailsComponent implements OnInit {
 
   movie: any = null
+  similarMovies: any = []
   posterUrl = 'https://image.tmdb.org/t/p/w500'
   
   constructor( 
@@ -27,9 +28,12 @@ export class MovieDetailsComponent implements OnInit {
   ngOnInit(): void {
     const id = Number(this.route.snapshot.params['id']);
     this.moviesService.getMovie(id).subscribe(item => {
-      console.log(item)
       this.movie = item
     })
-    console.log(this.movie)
+
+    this.moviesService.getSimilarMovies(id).subscribe(item => {
+      this.similarMovies = item
+    })
+
   }
 }
