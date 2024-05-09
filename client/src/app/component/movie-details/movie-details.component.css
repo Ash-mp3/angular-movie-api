@@ -1,3 +1,12 @@
-.movie{
-    @apply flex flex-col items-center bg-primary;
+.movie-card{
+    @apply flex flex-1 flex-col items-center p-10 bg-contrastSecondary;
+}
+.title{
+    @apply text-primary text-xl font-bold;
+}
+.nav-title{
+    @apply text-contrastSecondary text-xl font-bold;
+}
+.sideNav{
+    @apply bg-primary flex flex-col items-center overflow-y-scroll p-3 
 }
