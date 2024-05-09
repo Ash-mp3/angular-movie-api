@@ -1,21 +1,30 @@
-<div class="flex justify-center">
-    <div class="sideNav">
+
+<div *ngIf="movie" class="movie-details-page flex justify-center">
+
+    <div #navRef class="sideNav nav-animation">
         <h1 class="nav-title">Other Movies you might like</h1>
 
-        <div *ngFor="let movie of similarMovies">
-            <img class=" w-56 " [src]="posterUrl + movie.poster_path">
+        <div 
+        *ngFor="let movie of similarMovies; let index = index"
+        [routerLink]="'/details/' + movie.id" 
+        class="movie-img my-1"
+        style="--animation-delay: {{index}}s;"
+        >
+            <img class="w-56" [src]="posterUrl + movie.poster_path">
         </div>
     </div>
 
     <div *ngIf="movie" class="movie-card">   
-        <img class=" w-56 " [src]="posterUrl + movie.poster_path">
+        <img class="w-56" [src]="posterUrl + movie.poster_path">
         <h1 class="title">{{movie.title}}</h1>
-        <div class="">
-    
-        </div>
-    
+        <p class="text-xl">
+            {{movie.overview}}
+        </p>
     </div>
 
 </div>
 
+<div *ngIf="isLoading">
+    loading...
+</div>
 
