@@ -10,7 +10,7 @@
 h1 {
     font-size: 3rem;
     padding-right: 50px;
-    border-bottom: 3px solid black;
+    border-bottom: 3px solid;
 }
 
 .cardContent {
@@ -42,8 +42,9 @@ h1 {
 
 #horizontalLine {
     margin: 2rem .5rem;
-    border: 1px solid black;
+    border: 1px solid;
     width: 100%;
+    @apply border-secondaryAccent
 }
 
 

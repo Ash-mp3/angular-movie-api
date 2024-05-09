@@ -5,7 +5,7 @@
     @apply text-primary text-xl font-bold;
 }
 .nav-title{
-    @apply text-contrastSecondary text-xl font-bold;
+    @apply text-secondary text-xl font-bold;
 }
 .sideNav{
     @apply bg-primary flex flex-col items-center overflow-y-scroll p-3 
