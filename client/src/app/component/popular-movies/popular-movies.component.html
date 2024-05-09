@@ -3,18 +3,24 @@
   <input class="search" type="text" placeholder="Search..." />
 </form>
 <div class="catagoryContainer">
-  <h1 class="catagoryTitle">Popular</h1>
-  <div class="">
-    <mat-card class="">
-      <mat-card-content class="card">
-        <p>
-          Inception<span class="dot"></span> 2005 <span class="dot"></span> 4.7
+    <h1 class="catagoryTitle">Popular</h1>
+    <div class="">
+        <mat-card class="">
+            <mat-card-content class="card">
+                <p>Inception<span class="dot"></span> 2005 <span class="dot"></span> 4.7 </p>
+                <p>some decription of the thing</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="flex justify-center py-4">
+        <mat-divider class="bg-red-500 border p-0.5 rounded w-[90%] "></mat-divider>
+    </div>
+    <div class="flex gap-1 flex-wrap">
+
+      <div class="w-1/12 p-2" *ngFor="let movie of movies" [routerLink]="'/details/' + movie.id">
+        <p class="absolute text-xs w-full text-wrap">
+          {{movie.title}}
         </p>
-        <p>some decription of the thing</p>
-      </mat-card-content>
-    </mat-card>
-  </div>
-  <div class="flex justify-center py-4">
-    <mat-divider class="bg-red-500 border p-0.5 rounded w-[90%]"></mat-divider>
-  </div>
-</div>
+        <img [src]="posterUrl + movie.poster_path">
+      </div>
+    </div>
