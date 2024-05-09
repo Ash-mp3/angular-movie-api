@@ -1,5 +1,5 @@
 .movie-card{
-    @apply flex flex-1 flex-col items-center p-10 bg-contrastSecondary;
+    @apply flex flex-1 flex-col items-center p-10 bg-secondary;
 }
 .title{
     @apply text-primary text-xl font-bold;
