@@ -5,6 +5,7 @@
 
 .cardHeader {
     height: 20%;
+    @apply px-5;
 }
 
 h1 {
@@ -12,9 +13,12 @@ h1 {
     padding-right: 50px;
     border-bottom: 3px solid;
 }
+mat-card{
+    border-radius: 10px;
+}
 
 .cardContent {
-    padding: 2.5rem 1.5rem ;
+    padding: 2.5rem 1.75rem ;
     height: 40%;
    }
 
@@ -31,10 +35,11 @@ h1 {
      height: 40%;
      display: flex;
      flex-direction: column;
+     padding: 1rem 1.75rem 1.5rem 1.75rem;
  }
  
  .cardActions button {
-     height: 3rem;
+     height: 3.5rem;
      font-size: 1.2rem;
      width: 100%;
      margin: 0 1.5rem;
@@ -47,4 +52,6 @@ h1 {
      width: 100%;
      @apply border-secondaryAccent;
  }
- 
+ mat-card{
+     border-radius: 10px;
+ }
