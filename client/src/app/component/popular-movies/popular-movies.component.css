@@ -1,27 +1,26 @@
-  .catagoryContainer{
-    @apply flex flex-col flex-wrap justify-evenly;
-  }
-  .catagoryTitle{
-    @apply p-1 m-1 font-semibold text-2xl;
-  }
   .searchContainer{
-    @apply flex justify-end p-2 sticky;
+    /* this is for the searchbar container aka the form */
+    @apply flex justify-end p-2 fixed z-10 right-0 my-2;
   }
-  .movieContainer{
-    @apply flex flex-col justify-end;
-  } 
   .dot{
-    border: .5px black solid;
-    @apply rounded-full;
+    /* this is for the seperator dots */
+    border-radius: 50%;
+    @apply bg-secondaryAccent inline-block w-1 h-1 align-middle;
   }
-  .search{
-    /* border: solid black 1px; */
-    @apply px-1 py-1.5 rounded-full shadow-xl ;
+  .search{ 
+    /* this is for the input */
+    @apply px-1 py-1.5 rounded-full shadow-xl shadow-black;
+  }
+  .moviesContainer{
+    @apply flex justify-evenly gap-x-4 gap-y-8 flex-wrap bg-lightBlack pb-10 pt-20
   }
   mat-card{
-    @apply w-1/6 rounded-xl hover:scale-110 duration-300;
+    @apply w-1/6 rounded-xl hover:scale-110 duration-300 hover:cursor-pointer hover:shadow-md hover:shadow-black;
     
   }
   app-popular-movies{
     @apply bg-lightBlack
+  }
+  button{
+    @apply p-0 border-0
   }

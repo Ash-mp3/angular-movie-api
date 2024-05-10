@@ -1,5 +1,9 @@
 span{
-    text-shadow: 2px 2px 2px #d62828;
+    text-shadow: 1px 1px 1px #EAE2B7;
+    @apply text-secondary font-extrabold skew-x-3 -skew-y-6 text-3xl;
+    -webkit-text-stroke-width: .15px;
+    -webkit-text-stroke-color: #EAE2B7;
+    
 }
 mat-toolbar{
     @apply flex justify-between;

@@ -3,13 +3,15 @@ import { MoviesService } from '../../services/movies.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouterModule,  Router, NavigationEnd  } from '@angular/router';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-movie-details',
   standalone: true,
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    NavbarComponent
   ],
   templateUrl: './movie-details.component.html',
   styleUrl: './movie-details.component.css'

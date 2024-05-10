@@ -1,17 +1,35 @@
 <app-navbar></app-navbar>
-<form class="searchContainer bg-lightBlack sticky">
+<form class="searchContainer">
   <input class="search" type="text" placeholder="Search..." />
 </form>
-
-    <div class="flex justify-evenly gap-x-4 gap-y-6 flex-wrap bg-lightBlack pb-8">
-    <mat-card *ngFor="let movie of movies" [routerLink]="'/details/' + movie.id">
-      <mat-card-content class="bg-primary h-full rounded-lg">
-        <img [src]="posterUrl + movie.poster_path" class="rounded-t-lg">
-        <section class="bg-primaryLight/50 rounded-b-lg p-2">
-          <p class="text-xs w-full text-wrap">
-            {{movie.title}}
-          </p>
-        </section>
-      </mat-card-content>
-    </mat-card>
-    </div>
+<div class="moviesContainer">
+  <mat-card *ngFor="let movie of movies" [routerLink]="'/details/' + movie.id">
+    <mat-card-content class="bg-primary h-full rounded-lg">
+      <img [src]="posterUrl + movie.poster_path" class="rounded-t-lg" />
+      <section class="bg-primaryLight/40 rounded-b-lg p-2 text-secondaryAccent">
+        <span class="text-wrap">
+          {{ movie.title }}
+        </span>
+        <div class="text-xs flex justify-start gap-1 items-center">
+          <button
+            mat-stroked-button
+            matTooltip="Release Date"
+            matTooltipPosition="below"
+            style="color: #eae2b7"
+          >
+            {{ movie.release_date }}
+          </button>
+          <span class="dot"></span>
+          <button
+            mat-stroked-button
+            matTooltip="Score"
+            matTooltipPosition="below"
+            style="color: #eae2b7"
+          >
+            {{ movie.vote_average }}
+          </button>
+        </div>
+      </section>
+    </mat-card-content>
+  </mat-card>
+</div>
