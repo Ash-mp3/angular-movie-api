@@ -33,7 +33,6 @@ export class PopularMoviesComponent implements OnInit {
   ngOnInit(): void {
     this.moviesService.getMovies().subscribe(contents => {
         this.movies = contents
-        console.log(contents)
       }
     )
   }

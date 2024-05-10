@@ -1,25 +1,48 @@
 
-<div *ngIf="movie" class="movie-details-page flex justify-center">
+<div *ngIf="movie && !isLoading" class="movie-details-page flex justify-center">
 
-    <div #navRef class="sideNav nav-animation">
-        <h1 class="nav-title">Other Movies you might like</h1>
+    <div class="sideNav-container">
 
-        <div 
-        *ngFor="let movie of similarMovies; let index = index"
-        [routerLink]="'/details/' + movie.id" 
-        class="movie-img my-1"
-        style="--animation-delay: {{index}}s;"
-        >
-            <img class="w-56" [src]="posterUrl + movie.poster_path">
+        <div #navRef class="sideNav nav-animation">
+            <h1 class="nav-title">Other Movies you might like</h1>
+
+            <div 
+            *ngFor="let movie of similarMovies; let index = index"
+            [routerLink]="'/details/' + movie.id" 
+            class="movie-img my-1"
+            style="--animation-delay: {{index}}s;"
+            >
+                <img class="sidenav-movie-img" [src]="posterUrl + movie.poster_path">
+            </div>
         </div>
+
     </div>
 
+
     <div *ngIf="movie" class="movie-card">   
-        <img class="w-56" [src]="posterUrl + movie.poster_path">
-        <h1 class="title">{{movie.title}}</h1>
-        <p class="text-xl">
+        <div class="movie-img-container">
+            <img class="w-70 selected-movie-img" [src]="posterUrl + movie.poster_path">
+        </div>
+
+        <div class="movie-overview text-xl">
+            <div class="flex justify-center">
+                <div class="movie-details">
+                    <h3>
+                        Rating: <span
+                        [classList]=""
+                        >{{movie.vote_average}}</span>
+                    </h3>
+                    <h3>
+                        
+                    </h3>
+                </div>
+                <div class="movie-buttons">
+                    
+                </div>
+                <h1 class="title">{{movie.title}}</h1>
+            </div>
             {{movie.overview}}
-        </p>
+        </div>
     </div>
 
 </div>
