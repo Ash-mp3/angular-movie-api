@@ -28,12 +28,33 @@
     @apply flex flex-col items-center;
 }
 .movie-overview{
+    @apply bg-secondaryAccent;
     max-width: 45em;
     text-align: center;
     font-size: 30px;
+    margin: 25px 15px 0 15px;
+    padding: 15px;
+}
+.detail{
+    font-weight: bold;
+    color: rgb(83, 83, 83);
+    font-size: 26px;
+    padding: 15px;
+}
+span.black{
+    @apply text-black;
+}
+span.green{
+    @apply text-green-600;
+}
+span.orange{
+    @apply text-orange-600;
+}
+span.red{
+    @apply text-red-600;
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 730px){
     .movie-details-page{
         flex-direction: column-reverse;
     }
@@ -49,6 +70,11 @@
     }
     .sidenav-movie-img{
         padding: 30px;
+    }
+}
+@media screen and (max-width: 450px){
+    button{
+        font-size: 24px;
     }
 }
 @media screen and (min-width: 1500px){
@@ -96,3 +122,5 @@
     animation: fadeIn 2s forwards, slideIn 1s forwards; 
     animation-delay: calc(var(--animation-delay)*.2);
   }
+
+

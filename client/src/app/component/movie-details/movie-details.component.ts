@@ -5,19 +5,26 @@ import { CommonModule, ViewportScroller } from '@angular/common';
 import { RouterModule,  Router, NavigationEnd  } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 
+import { MatCard } from '@angular/material/card';
+import { MatIcon } from '@angular/material/icon';
+import { MatButton } from '@angular/material/button';
+
 @Component({
   selector: 'app-movie-details',
   standalone: true,
   imports: [
     CommonModule,
     RouterModule,
-    NavbarComponent
+    NavbarComponent,
+    MatIcon, MatButton, MatCard
   ],
   templateUrl: './movie-details.component.html',
   styleUrl: './movie-details.component.css'
 })
 export class MovieDetailsComponent implements OnInit, AfterViewInit {
   @ViewChild('navRef') sideNav: ElementRef
+
+  hasSeenMovie: boolean = false
 
   movie: any = null
   similarMovies: any = []
@@ -79,5 +86,11 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       sideNavHtml.classList.add('nav-animation');
     });
+  }
+
+
+
+  toggleHasSeenMovie(){
+    this.hasSeenMovie = !this.hasSeenMovie
   }
 }
