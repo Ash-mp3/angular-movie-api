@@ -45,9 +45,9 @@ export class PopularMoviesComponent implements OnInit {
   constructor(private moviesService: MoviesService) {}
 
   ngOnInit(): void {
-    this.moviesService.getMovies().subscribe((contents) => {
-      this.movies = contents;
-      console.log(contents);
-    });
+    this.moviesService.getMovies().subscribe(contents => {
+        this.movies = contents
+      }
+    )
   }
 }

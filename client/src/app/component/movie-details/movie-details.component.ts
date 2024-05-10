@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
 import { ActivatedRoute } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import { RouterModule,  Router, NavigationEnd  } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 
@@ -27,7 +27,8 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
   constructor( 
     private moviesService: MoviesService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private viewportScroller: ViewportScroller
   ){
 
   }
@@ -53,16 +54,14 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
     const id = Number(this.route.snapshot.params['id']);
     this.moviesService.getMovie(id).subscribe(item => {
       this.movie = item
+      console.log(item)
     })
 
     this.moviesService.getSimilarMovies(id).subscribe(item => {
       this.similarMovies = item
+      this.isLoading = false
+
     })
-
-    this.isLoading = false
-
-
-
   }
 
 
@@ -71,6 +70,8 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
   }
 
   animateNavbar(){
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+    
     const sideNavHtml = this.sideNav.nativeElement
 
     sideNavHtml.classList.remove('nav-animation');
