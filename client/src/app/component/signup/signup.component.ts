@@ -41,6 +41,10 @@ export class SignupComponent {
     this.AuthService.signUp(Email, Password);
   }
 
+  regiserterWithGoogle() {
+    this.AuthService.signUpWithGoogle();
+  }
+
   onSubmit() {
     if (this.form.invalid) {
       console.error('Form is invalid!');

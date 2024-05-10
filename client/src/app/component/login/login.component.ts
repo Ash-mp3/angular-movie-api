@@ -1,8 +1,8 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { User } from '../../models/user';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { Firestore, collection, getDocs } from '@angular/fire/firestore';
+import { Firestore } from '@angular/fire/firestore';
 import { MatCardModule } from '@angular/material/card';
 import {
   FormControl,
@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../../core/auth.service';
+import { getAuth, getRedirectResult, GoogleAuthProvider } from 'firebase/auth';
 
 @Component({
   selector: 'app-login',
@@ -51,6 +52,10 @@ export class LoginComponent {
     console.log(isUserLoggedIn);
   }
 
+  loginWithGoogle() {
+    this.AuthService.signUpWithGoogle();
+  }
+
   onSubmit() {
     if (this.form.invalid) {
       console.error('Form is invalid!');
@@ -61,8 +66,6 @@ export class LoginComponent {
     this.loginUser(formData.Email, formData.Password);
     this.form.reset();
   }
-    
-  
 }
 
 //   async ngOnInit(): Promise<void> {

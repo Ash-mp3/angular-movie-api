@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, getAuth } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, getAuth } from 'firebase/auth';
 import { Router } from '@angular/router';
 
 
@@ -31,5 +31,19 @@ export class AuthService {
           } catch (error) {
             console.error('Error logging in user:', error.code, error.message);
           }
-      }
+    }
+
+    signUpWithGoogle() {
+        const auth = getAuth();
+        const provider = new GoogleAuthProvider();
+
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                const credential = GoogleAuthProvider.credentialFromResult(result)
+                console.log(credential)
+                this.router.navigate(['/popular']);
+            }).catch((error) => {
+                console.error(error.code, error.message)
+            })
+    }
 }
