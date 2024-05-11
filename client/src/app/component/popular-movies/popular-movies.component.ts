@@ -30,6 +30,7 @@ import { MAT_TOOLTIP_DEFAULT_OPTIONS, MatTooltipModule } from '@angular/material
     NavbarComponent,
     MatButtonModule,
     MatTooltipModule,
+    MatIconModule,
   ],
   providers: [
     {provide:MAT_TOOLTIP_DEFAULT_OPTIONS, useValue:{showDelay: 750, hideDelay: 750}}

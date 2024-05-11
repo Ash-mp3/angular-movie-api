@@ -5,8 +5,8 @@
 <div class="moviesContainer">
   <mat-card *ngFor="let movie of movies" [routerLink]="'/details/' + movie.id">
     <mat-card-content class="bg-primary h-full rounded-lg">
-      <img [src]="posterUrl + movie.poster_path" class="rounded-t-lg" />
-      <section class="bg-primaryLight/40 rounded-b-lg p-2 text-secondaryAccent">
+      <img [src]="posterUrl + movie.poster_path" class="rounded-t-lg h-3/4" />
+      <section class="bg-primaryLight/40 rounded-b-lg p-2 text-secondaryAccent h-1/4">
         <span class="text-wrap">
           {{ movie.title }}
         </span>
@@ -26,7 +26,7 @@
             matTooltipPosition="below"
             style="color: #eae2b7"
           >
-            {{ movie.vote_average }}
+            {{ movie.vote_average }} <mat-icon fontIcon="star"></mat-icon>
           </button>
         </div>
       </section>
