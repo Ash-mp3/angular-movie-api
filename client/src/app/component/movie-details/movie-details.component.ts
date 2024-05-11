@@ -1,9 +1,13 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
 import { ActivatedRoute } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import { RouterModule,  Router, NavigationEnd  } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
+
+import { MatCard } from '@angular/material/card';
+import { MatIcon } from '@angular/material/icon';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-movie-details',
@@ -11,13 +15,16 @@ import { NavbarComponent } from '../navbar/navbar.component';
   imports: [
     CommonModule,
     RouterModule,
-    NavbarComponent
+    NavbarComponent,
+    MatIcon, MatButton, MatCard
   ],
   templateUrl: './movie-details.component.html',
   styleUrl: './movie-details.component.css'
 })
 export class MovieDetailsComponent implements OnInit, AfterViewInit {
   @ViewChild('navRef') sideNav: ElementRef
+
+  hasSeenMovie: boolean = false
 
   movie: any = null
   similarMovies: any = []
@@ -27,7 +34,8 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
   constructor( 
     private moviesService: MoviesService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private viewportScroller: ViewportScroller
   ){
 
   }
@@ -53,16 +61,14 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
     const id = Number(this.route.snapshot.params['id']);
     this.moviesService.getMovie(id).subscribe(item => {
       this.movie = item
+      console.log(item)
     })
 
     this.moviesService.getSimilarMovies(id).subscribe(item => {
       this.similarMovies = item
+      this.isLoading = false
+
     })
-
-    this.isLoading = false
-
-
-
   }
 
 
@@ -71,6 +77,8 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
   }
 
   animateNavbar(){
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+    
     const sideNavHtml = this.sideNav.nativeElement
 
     sideNavHtml.classList.remove('nav-animation');
@@ -78,5 +86,11 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       sideNavHtml.classList.add('nav-animation');
     });
+  }
+
+
+
+  toggleHasSeenMovie(){
+    this.hasSeenMovie = !this.hasSeenMovie
   }
 }

@@ -65,15 +65,40 @@ export class MoviesService {
       movie.matchStrength = count
     })
 
+
     //sort the movies based on match strength
     uniqueMovies.sort((a, b) => {
       return b.matchStrength - a.matchStrength;
     })
 
+
+    //if the lenght of the unique movies is less than 6, push extra movies
+    if(uniqueMovies.length < 6){
+      this.featuredMovies.forEach((movie) => {
+        if(uniqueMovies.length < 6){
+          let duplicate = false
+          uniqueMovies.forEach(matchingMovie => {
+            if(matchingMovie.id === movie.id){
+              duplicate = true
+            }
+          })
+          if(!duplicate){
+            uniqueMovies.push({
+              id: movie.id,
+              matchStrength: 0
+            })
+          }
+        }
+      })
+    }
+
+
+
+    //get the first 6 movies (which will be the ones with the highest match strength)
+    //and push the full movie object to the formattedMovieResponse
+
     let formattedMovieResponse = []
 
-    //get the first 5 movies (which will be the ones with the highest match strength)
-    //and push the full movie object to the formattedMovieResponse
     for(let i=0; i<6; i++){
       const movieId = uniqueMovies[i].id
       const fullMovie = this.featuredMovies.find(movie => movie.id === movieId)
