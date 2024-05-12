@@ -8,10 +8,10 @@ import { authGuard } from './core/auth.guard';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToPopular = () => redirectLoggedInTo(['popular']);
-
+// canActivate: [authGuard]
 export const routes: Routes = [
     {path: 'login', component: WelcomeComponent },
-    {path: 'popular', component: PopularMoviesComponent, canActivate: [authGuard]},
+    {path: 'popular', component: PopularMoviesComponent, },
     {path: 'details/:id', component: MovieDetailsComponent},
     { path: 'watchlist', component: WatchlistComponent },
     { path: '**', component: WelcomeComponent},
