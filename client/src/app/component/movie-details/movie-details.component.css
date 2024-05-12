@@ -60,7 +60,7 @@ span.red{
     }
     .sideNav-container{
         width: auto;
-        display: flex;
+        width: 100vw;
         overflow-y: visible;
     }
     .sideNav{
@@ -74,6 +74,9 @@ span.red{
 }
 @media screen and (max-width: 450px){
     button{
+        font-size: 24px;
+    }
+    .movie-overview{
         font-size: 24px;
     }
 }

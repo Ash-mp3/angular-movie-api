@@ -1,6 +1,8 @@
 <app-navbar></app-navbar>
 <div *ngIf="movie  && !isLoading" class="flex flex-col">
     <div class="movie-details-page flex justify-center">
+
+        <!-- SideNav -->
         <div class="sideNav-container">
             <div #navRef class="sideNav nav-animation">
                 <h1 class="nav-title">Other Movies you might like</h1>
@@ -14,10 +16,14 @@
                     <img class="sidenav-movie-img" [src]="posterUrl + movie.poster_path">
                 </div>
             </div>
-
         </div>
 
+        <!-- display the review section up here for larger devices -->
+        <app-review-section *ngIf="isSmallScreen">
+        </app-review-section>
 
+
+        <!-- movie card -->
         <div *ngIf="movie" class="movie-card">   
             <div class="movie-img-container">
                 <img class="w-70 selected-movie-img" [src]="posterUrl + movie.poster_path">
@@ -59,11 +65,13 @@
             {{movie.overview}}
         </mat-card>
     </div>
+    
    </div>
 
-    <div>
-        Reviews
-    </div>
+
+   <!-- display the review section down here for mobile devices -->
+    <app-review-section *ngIf="!isSmallScreen">
+    </app-review-section>
 
 </div>
 
