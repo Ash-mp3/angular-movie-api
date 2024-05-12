@@ -33,7 +33,7 @@ import { MAT_TOOLTIP_DEFAULT_OPTIONS, MatTooltipModule } from '@angular/material
     MatIconModule,
   ],
   providers: [
-    {provide:MAT_TOOLTIP_DEFAULT_OPTIONS, useValue:{showDelay: 750, hideDelay: 750}}
+    {provide:MAT_TOOLTIP_DEFAULT_OPTIONS, useValue:{showDelay: 350, hideDelay: 0}}
   ],
   templateUrl: './popular-movies.component.html',
   styleUrl: './popular-movies.component.css',
