@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import {
-  FormControl,
   Validators,
   FormsModule,
   ReactiveFormsModule,
@@ -52,7 +51,6 @@ export class SignupComponent {
     }
 
     const formData = this.form.value;
-    console.log('Form data:', formData);
     this.regiserterUser(formData.Email, formData.Password);
     this.form.reset();
   }
