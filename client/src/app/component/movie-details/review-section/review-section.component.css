@@ -1,0 +1,36 @@
+*{
+    font-size: 20px
+}
+
+.review-section{
+    @apply bg-lightBlack text-secondaryAccent flex flex-col items-center;
+}
+
+.star-icon{
+    width: 50px;
+    height: auto;
+    font-size: 36px;
+}
+.star-ratings{
+    margin-bottom: 16px;
+
+}
+.gray{
+    color: gray;
+}
+
+
+.rating-title{
+    @apply text-4xl p-6 text-center font-bold
+}
+
+mat-form-field{
+    width: 80vw;
+}
+
+mat-label{
+}
+
+textarea{
+    height: 200px !important;
+}

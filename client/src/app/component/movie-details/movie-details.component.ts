@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { RouterModule,  Router, NavigationEnd  } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { ReviewSectionComponent } from './review-section/review-section.component';
 
 import { MatCard } from '@angular/material/card';
 import { MatIcon } from '@angular/material/icon';
@@ -16,6 +17,7 @@ import { MatButton } from '@angular/material/button';
     CommonModule,
     RouterModule,
     NavbarComponent,
+    ReviewSectionComponent,
     MatIcon, MatButton, MatCard
   ],
   templateUrl: './movie-details.component.html',
@@ -29,7 +31,8 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
   movie: any = null
   similarMovies: any = []
   posterUrl = 'https://image.tmdb.org/t/p/w500'
-  isLoading: boolean = null
+  isLoading: boolean = false
+  isSmallScreen: boolean = window.innerWidth<731?true:false
   
   constructor( 
     private moviesService: MoviesService,
@@ -47,8 +50,15 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
       if (event instanceof NavigationEnd) {
         this.getNewPageContents()
         this.animateNavbar()
+        if(this.isSmallScreen){
+          window.scrollTo({ top: 0/* , behavior: 'smooth' */ })
+        }
       }
     });
+
+    window.addEventListener('resize', () => {
+      this.isSmallScreen = window.innerWidth<731?true:false
+    })
 
   }
 
@@ -77,7 +87,6 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
   }
 
   animateNavbar(){
-    window.scrollTo({ top: 0, behavior: 'smooth' })
     
     const sideNavHtml = this.sideNav.nativeElement
 
