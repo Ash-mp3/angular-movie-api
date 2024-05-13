@@ -16,6 +16,7 @@ import { ReviewSectionComponent } from "./review-section/review-section.componen
 import { MatCard } from "@angular/material/card";
 import { MatIcon } from "@angular/material/icon";
 import { MatButton } from "@angular/material/button";
+import { user } from "@angular/fire/auth";
 
 @Component({
 	selector: "app-movie-details",
@@ -93,6 +94,7 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
 			this.isLoading = false;
 		});
 
+    console.log(this.userData)
 		this.userData.watched.forEach((movieId) => {
 			if (movieId === this.movie.id) {
 				this.hasSeenMovie = true;

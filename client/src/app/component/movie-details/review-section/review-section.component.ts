@@ -3,6 +3,8 @@ import { MatInput, MatFormField, MatLabel } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router, NavigationEnd } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 import { ActivatedRoute } from '@angular/router';
 import { MoviesService } from '../../../services/movies.service';
@@ -14,6 +16,7 @@ import { MoviesService } from '../../../services/movies.service';
   imports: [
     CommonModule,
     FormsModule,
+    RouterModule,
     MatInput, MatFormField, MatLabel, MatIcon
   ],
   templateUrl: './review-section.component.html',
@@ -24,14 +27,15 @@ export class ReviewSectionComponent implements OnInit{
 
   constructor( 
     private moviesService: MoviesService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
   ){
 
   }
 
   rating: number = null
   comment: string = ""
-  reviews: any = {}
+  reviews: any = null
 
   rateMovie(num: number){
     if(num === this.rating){
@@ -43,12 +47,23 @@ export class ReviewSectionComponent implements OnInit{
 
 
   ngOnInit(): void {
+    this.getMovieReviews()
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.getMovieReviews()
+      }
+    });
+  }
+
+
+  getMovieReviews(){
 
     const id = Number(this.route.snapshot.params['id']);
 
     this.moviesService.getMovieReviews(id).subscribe((item: any) => {
-      console.log(item)
       this.reviews = item
     })
   }
+
+
 }

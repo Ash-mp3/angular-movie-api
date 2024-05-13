@@ -23,7 +23,7 @@
         matInput mat-autosize></textarea>
     </mat-form-field>
 
-    <div class="comments">
+    <div class="comments" *ngIf="reviews">
 
         <div *ngFor="let review of reviews.reviews" class="comment">
 
