@@ -4,19 +4,14 @@
     <div>
         <h1 class="rating-title">Rate this movie</h1>
         
-        <div class="flex justify-center">
-            <div 
+        <div class="star-ratings">
+            <mat-icon 
             *ngFor="let i of [1,2,3,4,5]"
-            class="star-ratings"
             [ngClass]="rating === null?'gray':''"
-            >
-                <mat-icon 
-                [fontIcon]=" rating >= i?'star':'star_outline'" 
-                class="star-icon" 
-                (click)="rateMovie(i)">
-        
-                </mat-icon>
-            </div>
+            [fontIcon]=" rating >= i?'star':'star_outline'" 
+            class="star-icon" 
+            (click)="rateMovie(i)">
+            </mat-icon>
         </div>
     </div>  
 
@@ -28,5 +23,34 @@
         matInput mat-autosize></textarea>
     </mat-form-field>
 
-    
+    <div class="comments">
+
+        <div *ngFor="let review of reviews.reviews" class="comment">
+
+            <div class="flex justify-between m-4">
+                <h1 class="comment-title">
+                    {{review.user}}
+
+                </h1>
+
+                <!-- Star rating -->
+                <div *ngIf="review.rating" class="star-ratings">
+
+                    <mat-icon 
+                    *ngFor="let i of [1,2,3,4,5]"
+                    [fontIcon]=" review.rating >= i?'star':'star_outline'" 
+                    class="comment-star-icon" 
+                    >
+            
+                    </mat-icon>
+
+                </div>
+            </div>
+
+            <div *ngIf="review.text">
+                {{review.text}}
+            </div>
+        </div>
+        
+    </div>
 </div>
