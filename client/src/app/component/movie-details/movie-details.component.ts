@@ -28,8 +28,10 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
 
   hasSeenMovie: boolean = false
 
+
   movie: any = null
   similarMovies: any = []
+
   posterUrl = 'https://image.tmdb.org/t/p/w500'
   isLoading: boolean = false
   isSmallScreen: boolean = window.innerWidth<731?true:false
@@ -79,6 +81,7 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
       this.isLoading = false
 
     })
+
   }
 
 
