@@ -1,4 +1,8 @@
-import { Injectable, OnInit } from "@angular/core";
+import { Injectable} from "@angular/core";
+import { Auth } from "@angular/fire/auth";
+import { where } from "firebase/firestore";
+import { User } from "@angular/fire/auth";
+import { BehaviorSubject } from "rxjs";
 import {
 	Firestore,
 	collection,
@@ -7,15 +11,12 @@ import {
 	setDoc,
 	query,
 } from "@angular/fire/firestore";
-import { Auth } from "@angular/fire/auth";
-import { where } from "firebase/firestore";
-import { User } from "@angular/fire/auth";
-import { BehaviorSubject } from "rxjs";
 
 @Injectable({
 	providedIn: "root",
 })
 export class UsersMoviesService {
+    //state variable that the user data is stored in
 	private userDataSubject = new BehaviorSubject<User | null>(null);
 	userData$ = this.userDataSubject.asObservable();
 
@@ -29,6 +30,7 @@ export class UsersMoviesService {
 		this.updateUserData();
 	}
 
+    //this is called after every database update so the client data matchs the database
 	async updateUserData(): Promise<void> {
 		const getUserQuery = query(
 			collection(this.fs, "users"),
@@ -43,18 +45,24 @@ export class UsersMoviesService {
 	}
 
 	async addToWatchedOrWatchlist(movieId: string, typeOfList: string) {
-		let updatedUser;
+        let updatedUser;
+        const userDocRef = doc(this.fs, "users", this.auth.currentUser.uid);
+
+        //get current user data
 		this.userData$.subscribe((data) => {
 			this.userData = data;
 		});
-		const userDocRef = doc(this.fs, "users", this.auth.currentUser.uid);
+        
+        //if the watched button was clicked then it gets added to the watched array
 		if (typeOfList === "watched") {
 			updatedUser = {
 				email: this.userData.email,
 				username: this.userData.username,
 				watchlist: [...this.userData.watchlist],
 				watched: [...this.userData.watched, movieId],
-			};
+            };
+
+        //if the watchlist button was clicked then it gets added to the watchlist array
 		} else if (typeOfList === "watchlist") {
 			updatedUser = {
 				email: this.userData.email,
@@ -62,17 +70,21 @@ export class UsersMoviesService {
 				watchlist: [...this.userData.watchlist, movieId],
 				watched: [...this.userData.watched],
 			};
-		}
+        }
+        //updating the doc
 		await setDoc(userDocRef, updatedUser);
 		this.updateUserData();
 	}
 
 	async removeFromWatchedOrWatchlist(movieId: string, typeOfList: string) {
-		let updatedUser;
+        let updatedUser;
+        const userDocRef = doc(this.fs, "users", this.auth.currentUser.uid);
+
+        //get current user data
 		this.userData$.subscribe((data) => {
 			this.userData = data;
-		});
-		const userDocRef = doc(this.fs, "users", this.auth.currentUser.uid);
+        });
+        //if the watched button was clicked agian, it loops through the users watched movies to find and remove the current movie.
 		if (typeOfList === "watched") {
 			let watchedArray = [];
 			this.userData.watched.forEach((movie_id) => {
@@ -85,10 +97,12 @@ export class UsersMoviesService {
 				username: this.userData.username,
 				watchlist: [...this.userData.watchlist],
 				watched: [...watchedArray],
-			};
+            };
+            
+        //if the watchlist button was clicked agian, it loops through the users watchlist movies to find and remove the current movie.
         } else if (typeOfList === "watchlist") {
             let watchistArray = [];
-			this.userData.watched.forEach((movie_id) => {
+			this.userData.watchlist.forEach((movie_id) => {
 				if (movie_id !== movieId) {
 					watchistArray.push(movie_id);
 				}
@@ -100,7 +114,7 @@ export class UsersMoviesService {
 				watched: [...this.userData.watched],
 			};
         }
-
+        //updating the doc
 		await setDoc(userDocRef, updatedUser);
 		this.updateUserData();
 	}
