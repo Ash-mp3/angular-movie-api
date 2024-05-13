@@ -1,0 +1,9 @@
+<form class="searchContainer">
+    <input class="search" list="searchOptions" (input)="oninput($event)" type="text" placeholder="Search..." />
+    <button class="searchButton"><mat-icon fontIcon="search"></mat-icon></button>
+  </form>
+  
+  <datalist id="searchOptions">
+    <option *ngFor="let movie of movies.results" value="{{movie.title}}">{{movie.title}} {{movie.release_date}}</option>
+    <option value="">No Movies Found!</option>
+  </datalist>

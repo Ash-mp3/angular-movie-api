@@ -1,0 +1,11 @@
+.searchContainer{
+    /* this is for the searchbar container aka the form */
+    @apply flex justify-end fixed z-10 rounded-3xl right-0 my-4 mr-4 focus-within:outline focus-within:outline-primaryLight focus:outline-none focus-within:scale-105 duration-200 ;
+  }
+  .search{ 
+    /* this is for the input */
+    @apply pl-2.5 pr-1 py-1.5 rounded-l-3xl grow shadow-xl border-none shadow-black bg-primary/95 text-secondaryAccent focus:outline-none;
+  }
+  .searchButton{
+    @apply rounded-r-3xl bg-primary/95 border-0 outline-none p-1
+  }

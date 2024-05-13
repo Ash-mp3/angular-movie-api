@@ -1,39 +1,27 @@
-  .searchContainer{
-    /* this is for the searchbar container aka the form */
-    @apply flex justify-end fixed z-10 rounded-3xl right-0 my-4 mr-4 focus-within:outline focus-within:outline-primaryLight focus:outline-none focus-within:scale-105 duration-200 ;
-  }
-  .dot{
-    /* this is for the seperator dots */
-    border-radius: 50%;
-    @apply bg-secondaryAccent inline-block w-1 h-1 align-middle;
-  }
-  .search{ 
-    /* this is for the input */
-    @apply pl-2.5 pr-1 py-1.5 rounded-l-3xl grow shadow-xl border-none shadow-black bg-primary/95 text-secondaryAccent focus:outline-none;
-  }
-  .searchButton{
-    @apply rounded-r-3xl bg-primary/95 border-0 outline-none p-1
-  }
-  .moviesContainer{
-    @apply flex items-center sm:justify-evenly sm:flex-row flex-col gap-x-4 gap-y-8 xl:gap-y-10 sm:flex-wrap bg-lightBlack pb-10 pt-20
-  }
-  mat-card{
-    @apply w-4/5 sm:w-1/6 rounded-xl md:hover:scale-110 md:duration-300 md:hover:cursor-pointer hover:shadow-md hover:shadow-black;
-    
-  }
-  app-popular-movies{
-    @apply bg-lightBlack
-  }
-  button{
-    @apply p-0 border-0
-  }
-  section{
-    flex: 1 1 auto;
-    @apply bg-primaryLight/35 rounded-b-lg p-2 text-secondaryAccent sm:h-1/4 2xl:h-[15%];
-  }
-  mat-card-content{
-    @apply bg-primary h-full rounded-lg;
-  }
-  .movieInfo{
-    @apply text-xs flex justify-start gap-1 items-center sm:hidden md:block;
-  }
+.dot {
+  /* this is for the seperator dots */
+  border-radius: 50%;
+  @apply bg-secondaryAccent inline-block w-1 h-1 align-middle;
+}
+.moviesContainer {
+  @apply bg-lightBlack flex flex-col items-center pt-20 gap-8;
+}
+mat-card {
+  @apply w-4/5 rounded-2xl hover:cursor-pointer hover:shadow-md hover:shadow-black;
+}
+app-popular-movies {
+  @apply bg-lightBlack;
+}
+button {
+  @apply p-0 border-0;
+}
+section {
+  flex: 1 1 auto;
+  @apply bg-primaryLight/35 rounded-b-lg p-2 text-secondaryAccent sm:h-1/4 2xl:h-[15%];
+}
+mat-card-content {
+  @apply bg-primary h-full rounded-lg;
+}
+.movieInfo {
+  @apply text-xs flex justify-start gap-1 items-center sm:hidden md:block;
+}

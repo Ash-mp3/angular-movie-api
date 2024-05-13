@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
@@ -13,6 +13,8 @@ import { RouterModule } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_TOOLTIP_DEFAULT_OPTIONS, MatTooltipModule } from '@angular/material/tooltip';
+import { HttpClient } from '@angular/common/http';
+import { SearchComponent } from '../search/search.component';
 
 
 @Component({
@@ -31,6 +33,7 @@ import { MAT_TOOLTIP_DEFAULT_OPTIONS, MatTooltipModule } from '@angular/material
     MatButtonModule,
     MatTooltipModule,
     MatIconModule,
+    SearchComponent,
   ],
   providers: [
     {provide:MAT_TOOLTIP_DEFAULT_OPTIONS, useValue:{showDelay: 350, hideDelay: 0}}
@@ -50,5 +53,6 @@ export class PopularMoviesComponent implements OnInit {
         this.movies = contents
       }
     )
+
   }
 }
