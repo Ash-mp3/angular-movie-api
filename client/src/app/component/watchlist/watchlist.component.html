@@ -1,1 +1,23 @@
-<p>watchlist works!</p>
+<app-navbar></app-navbar>
+<div id="watchlistPage" class="bg-lightBlack ">
+    <mat-tab-group id="tabGroup">
+        <mat-tab label="WatchList">
+            <mat-card class="mainCard">
+                <mat-card-content class="mainCardContent">
+                    <div class="movieCard w-[50%] md:w-[20%]" *ngFor="let movie of movies" [routerLink]="'/details/' + movie.id">
+                        <img [src]="posterUrl + movie.poster_path" class="rounded-lg md:hover:scale-110 md:duration-300 md:hover:cursor-pointer hover:shadow-md hover:shadow-black" />
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-tab>
+        <mat-tab label="Watched Films">
+            <mat-card class="mainCard">
+                <mat-card-content class="mainCardContent">
+                    <div class="movieCard w-[50%] md:w-[20%]" *ngFor="let movie of movies" [routerLink]="'/details/' + movie.id">
+                        <img [src]="posterUrl + movie.poster_path" class="rounded-lg md:hover:scale-110 md:duration-300 md:hover:cursor-pointer hover:shadow-md hover:shadow-black" />
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-tab>
+    </mat-tab-group>
+</div>

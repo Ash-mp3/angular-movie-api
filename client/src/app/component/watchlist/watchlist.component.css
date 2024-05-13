@@ -1,0 +1,29 @@
+#watchlistPage {
+    height: 100%;
+}
+
+.mainCard {
+    width: 90vw;
+    height: auto;
+    margin: 30px auto;
+    padding: 15px 0;
+    @apply bg-primary
+}
+
+.mainCardContent {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 30px;
+    padding: 0;
+}
+
+.movieCard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.movieCard img {
+    width: 80%;
+}
+
