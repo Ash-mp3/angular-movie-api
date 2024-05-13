@@ -8,16 +8,16 @@
                 <h1 class="nav-title">Other Movies you might like</h1>
 
                 <div 
-                *ngFor="let movie of similarMovies; let index = index"
-                [routerLink]="'/details/' + movie.id" 
-                class="movie-img my-1"
-                style="--animation-delay: {{index}}s;"
+                    *ngFor="let movie of similarMovies; let index = index"
+                    [routerLink]="'/details/' + movie.id" 
+                    class="movie-img my-1"
+                    style="--animation-delay: {{index}}s;"
                 >
-                    <img class="sidenav-movie-img" [src]="posterUrl + movie.poster_path">
+                <img class="sidenav-movie-img" [src]="posterUrl + movie.poster_path">
                 </div>
             </div>
         </div>
-
+     
         <!-- display the review section up here for larger devices -->
         <app-review-section *ngIf="isSmallScreen">
         </app-review-section>
@@ -47,25 +47,36 @@
                         </h4>
                     </div>
                     <div class="movie-buttons">
-                        <h4 class="detail">
-                            <button mat-flat-button *ngIf="hasSeenMovie" color="primary" (click)="toggleHasSeenMovie()">
+                        <div class="detail">
+                            <button mat-flat-button *ngIf="hasSeenMovie" color="primary" (click)="toggleHasSeenMovie(movie.id)">
                                 <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="movie"></mat-icon>
                                 <span>
                                     Seen this movie
                                     <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="done"></mat-icon>
                                 </span>
                             </button>
-                        <button mat-button *ngIf="!hasSeenMovie" color="primary" (click)="toggleHasSeenMovie()">
-                            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="movie"></mat-icon>
-                            Seen this movie?
-                        </button>
-                    </h4>
+                            <button mat-button *ngIf="!hasSeenMovie" color="primary" (click)="toggleHasSeenMovie(movie.id)">
+                                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="movie"></mat-icon>
+                                Seen this movie?
+                            </button>
+
+                            <button mat-flat-button *ngIf="isInWatchList" color="primary" (click)="toggleIsInWatchlist(movie.id)">
+                                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="movie"></mat-icon>
+                                <span>
+                                    Watchlist
+                                    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="done"></mat-icon>
+                                </span>
+                            </button>
+                            <button mat-button *ngIf="!isInWatchList" color="primary" (click)="toggleIsInWatchlist(movie.id)">
+                                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="movie"></mat-icon>
+                                Watchlist
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            {{movie.overview}}
-        </mat-card>
-    </div>
-    
+                {{movie.overview}}
+            </mat-card>
+        </div>
    </div>
 
 

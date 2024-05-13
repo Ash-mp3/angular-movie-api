@@ -3,13 +3,14 @@ import { Auth } from '@angular/fire/auth';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, getAuth } from 'firebase/auth';
 import { Router } from '@angular/router';
 import { CreateUserService } from '../services/create-user.service';
+import { UsersMoviesService } from '../services/users-movies.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-    constructor(private auth: Auth, private router: Router, private createUserService: CreateUserService) { }
+    constructor(private auth: Auth, private router: Router, private createUserService: CreateUserService, private usersMoviesService: UsersMoviesService) { }
 
     get authenticated() {
         return getAuth().currentUser;
@@ -33,9 +34,9 @@ export class AuthService {
             const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
             console.log('User logged in:', userCredential.user);
             if (userCredential) {
-                localStorage.setItem('uid', userCredential.user.uid);
+                this.usersMoviesService.initUserData()
+                this.router.navigate(['/popular']);
             }
-			this.router.navigate(['/popular']);
           } catch (error) {
             console.error('Error logging in user:', error.code, error.message);
           }
@@ -45,9 +46,9 @@ export class AuthService {
         const auth = getAuth();
         const provider = new GoogleAuthProvider();
         signInWithPopup(auth, provider)
-            .then((result) => {
+            .then(() => {
+                this.usersMoviesService.initUserData()
                 this.createUserService.checkIfUserIsNew(auth.currentUser.uid)
-                localStorage.setItem('uid', auth.currentUser.uid);
                 this.router.navigate(['/popular']);
             }).catch((error) => {
                 console.error(error.code, error.message)

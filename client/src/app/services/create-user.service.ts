@@ -33,7 +33,6 @@ export class CreateUserService {
         const userDocRef = collection(this.fs, 'users')
         const allUsers = await getDocs(userDocRef)
         allUsers.docs.forEach((doc) => {
-            console.log(doc.id, uid)
             if (doc.id === uid) {
                 isNew = false
             }
