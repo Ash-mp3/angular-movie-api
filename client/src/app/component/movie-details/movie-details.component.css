@@ -14,8 +14,8 @@
     position: relative;
     min-height: 100vh;
     width: 30vw;
-    min-width: 300px;
-    max-width: 515px;
+    min-width: 250px;
+    max-width: 350px;
 }
 .sideNav{
     @apply bg-primary flex flex-col items-center p-2;
@@ -31,14 +31,14 @@
     @apply bg-secondaryAccent;
     max-width: 45em;
     text-align: center;
-    font-size: 30px;
+    font-size: 24px;
     margin: 25px 15px 0 15px;
     padding: 15px;
 }
 .detail{
     font-weight: bold;
     color: rgb(83, 83, 83);
-    font-size: 26px;
+    font-size: 24px;
     padding: 15px;
 }
 span.black{
@@ -52,6 +52,10 @@ span.orange{
 }
 span.red{
     @apply text-red-600;
+}
+
+mat-card{
+    font-size: 20px;
 }
 
 @media screen and (max-width: 730px){

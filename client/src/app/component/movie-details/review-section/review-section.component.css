@@ -4,6 +4,7 @@
 
 .review-section{
     @apply bg-lightBlack text-secondaryAccent flex flex-col items-center;
+
 }
 
 .star-icon{
@@ -14,6 +15,7 @@
 .star-ratings{
     margin-bottom: 16px;
     text-align: center;
+    text-wrap: nowrap;
 }
 .gray{
     color: gray;
@@ -50,9 +52,6 @@ mat-form-field{
     width: 80vw;
 }
 
-mat-label{
-}
-
 textarea{
     height: 200px !important;
 }
@@ -61,4 +60,8 @@ textarea{
     width: 20px;
     height: auto;
     font-size: 20px;
+}
+
+@media screen and (max-width: 400px){
+    
 }

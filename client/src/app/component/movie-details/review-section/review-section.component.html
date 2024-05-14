@@ -21,7 +21,7 @@
 
     <div class="comments" *ngIf="reviews">
         <div *ngFor="let review of reviews.reviews" class="comment">
-            <div class="flex justify-between m-4">
+            <div class="flex flex-wrap justify-between m-4">
                 <h1 class="comment-title">
                     {{review.user}}
                 </h1>
