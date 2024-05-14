@@ -59,27 +59,7 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
 		});
 		this.getNewPageContents();
 
-		this.router.events.subscribe((event) => {
-			if (event instanceof NavigationEnd) {
-				this.hasSeenMovie = false;
-				this.isInWatchList = false;
-				this.movie = null;
-				this.similarMovies = [];
-				this.isLoading = false;
-				this.isSmallScreen = window.innerWidth < 731 ? true : false;
 
-				this.getNewPageContents();
-				this.animateNavbar();
-
-				if (this.isSmallScreen) {
-					window.scrollTo({ top: 0 });
-				}
-			}
-		});
-
-		window.addEventListener("resize", () => {
-			this.isSmallScreen = window.innerWidth < 731 ? true : false;
-		});
 	}
 
 
@@ -111,6 +91,31 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
 
 	ngAfterViewInit(): void {
 		this.animateNavbar();
+
+		
+		window.addEventListener("resize", () => {
+			this.isSmallScreen = window.innerWidth < 731 ? true : false;
+		});
+
+
+		
+		this.router.events.subscribe((event) => {
+			if (event instanceof NavigationEnd) {
+			this.hasSeenMovie = false;
+			this.isInWatchList = false;
+			this.movie = null;
+			this.similarMovies = [];
+			this.isLoading = false;
+			this.isSmallScreen = window.innerWidth < 731 ? true : false;
+
+			this.getNewPageContents();
+			this.animateNavbar();
+
+			if (this.isSmallScreen) {
+				window.scrollTo({ top: 0 });
+			}
+		}
+	});
 	}
 
 	//animate the side navbar
