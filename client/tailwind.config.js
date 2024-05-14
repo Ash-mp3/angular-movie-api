@@ -2,6 +2,7 @@
 module.exports = {
   content: ["./src/**/*.{html,ts}"],
   theme: {
+
     extend: {
       colors: {
         primary: "#34623F",
@@ -10,6 +11,10 @@ module.exports = {
         primaryLight: "#768948",
         primaryDark: "#1E2F23",
         lightBlack: "#003049",
+      },
+      scale: {
+        101: "1.01",
+        102: "1.02",
       },
     },
   },

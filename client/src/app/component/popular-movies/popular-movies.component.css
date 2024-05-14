@@ -1,13 +1,13 @@
 .dot {
   /* this is for the seperator dots */
   border-radius: 50%;
-  @apply bg-secondaryAccent inline-block w-1 h-1 align-middle;
+  @apply bg-secondaryAccent inline-block w-1 h-1;
 }
 .moviesContainer {
-  @apply bg-lightBlack flex flex-col items-center pt-20 gap-8;
+  @apply bg-lightBlack container mx-auto px-4 flex flex-col items-center pt-20 pb-14 gap-8 md:flex-row md:flex-wrap md:justify-around;
 }
 mat-card {
-  @apply w-4/5 rounded-2xl hover:cursor-pointer hover:shadow-md hover:shadow-black;
+  @apply w-4/5 md:w-1/6 rounded-2xl ; 
 }
 app-popular-movies {
   @apply bg-lightBlack;
@@ -15,13 +15,18 @@ app-popular-movies {
 button {
   @apply p-0 border-0;
 }
-section {
+.litleDetails {
   flex: 1 1 auto;
-  @apply bg-primaryLight/35 rounded-b-lg p-2 text-secondaryAccent sm:h-1/4 2xl:h-[15%];
+  @apply bg-primaryLight/35 rounded-b-lg p-2 text-secondaryAccent md:text-xs;
 }
 mat-card-content {
-  @apply bg-primary h-full rounded-lg;
+  @apply bg-primary h-full rounded-lg hover:scale-101 duration-300 
+  hover:cursor-pointer hover:shadow-md hover:shadow-secondary hover:border-double hover:border-secondary
+  sm:hover:scale-102 sm:duration-300 md:duration-200 lg:hover:scale-105;
+}
+img {
+  @apply w-full rounded-t-lg
 }
 .movieInfo {
-  @apply text-xs flex justify-start gap-1 items-center sm:hidden md:block;
+  @apply hidden h-1/3 lg:text-xs lg:flex lg:items-center justify-evenly;
 }
