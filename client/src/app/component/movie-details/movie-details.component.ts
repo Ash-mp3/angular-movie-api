@@ -55,7 +55,7 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
 		//get user data (watchlist and watched movies) from usersMoviesService
 		//then check to see if the current moveie has been seen.
 		this.usersMoviesService.userData$.subscribe((data) => {
-			this.userData = data;
+            this.userData = data;
 		});
 		this.getNewPageContents();
 
@@ -87,7 +87,7 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
 	getNewPageContents() {
 		this.isLoading = true;
 
-		this.movie = null;
+        this.movie = null;
 		this.similarMovies = [];
 
 		const id = Number(this.route.snapshot.params["id"]);
@@ -96,14 +96,14 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
 			this.similarMovies = item.similarMovies;
  			this.isLoading = false;
 		});
-
+        console.log(this.userData, this.movie)
 		this.userData.watched.forEach((movieId) => {
-			if (movieId === this.movie.id) {
+			if (movieId === id) {
 				this.hasSeenMovie = true;
 			}
 		});
-		this.userData.watchlist.forEach((movieId) => {
-			if (movieId === this.movie.id) {
+        this.userData.watchlist.forEach((movieId) => {
+			if (movieId === id) {
 				this.isInWatchList = true;
 			}
 		});

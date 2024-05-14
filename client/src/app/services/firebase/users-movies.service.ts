@@ -1,7 +1,7 @@
 import { Injectable} from "@angular/core";
 import { Auth } from "@angular/fire/auth";
 import { where } from "firebase/firestore";
-import { User } from "../../models/user";
+import { User } from "@angular/fire/auth";
 import { BehaviorSubject } from "rxjs";
 import {
 	Firestore,
@@ -27,7 +27,8 @@ export class UsersMoviesService {
 
 	initUserData(): void {
 		this.uid = this.auth.currentUser.uid;
-		this.updateUserData();
+        this.updateUserData();
+        console.log()
 	}
 
     //this is called after every database update so the client data matchs the database
