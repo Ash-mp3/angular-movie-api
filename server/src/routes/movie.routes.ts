@@ -66,16 +66,28 @@ movieRouter.get("/getMovies", (req, res) => {
 movieRouter.get("/getMovie", (req, res) => {
 
     const id = Number(req.query.id)
+    console.log(req.query.includeSimilarMovies)
+    const includeSimilarMovies = req.query.includeSimilarMovies==="false"?false:true
+
+    let formattedMovieResponse = {}
 
     const selectedMovie = movies.find(movie => movie.id === id)
-    const similarMovies = getSimilarMovies(id, movies)
-    const formattedMovieResponse = {
-        selectedMovie: selectedMovie,
-        similarMovies: similarMovies,
+    if(includeSimilarMovies){
+        const similarMovies = getSimilarMovies(id, movies)
+        formattedMovieResponse = {
+            selectedMovie: selectedMovie,
+            similarMovies: similarMovies,
+        }
+    } else {
+        formattedMovieResponse = {
+            selectedMovie: selectedMovie,
+        }
     }
+
 
     res.send(formattedMovieResponse)
 })
+
 
 
 
