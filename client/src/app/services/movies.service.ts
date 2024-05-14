@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs'
 import { movies } from './mock-movies';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment.dev';
 
 @Injectable({
-  providedIn: 'root'
-})
-export class MoviesService {
-    featuredMovies: any[] = movies.featured
+  providedIn: 'root',
 
-  constructor() { }
+})
+
+export class MoviesService {
+  featuredMovies: any[] = movies.featured
+  private apiUrl: string = environment.apiUrl
+
+  constructor(private http: HttpClient) { }
 
 
   getMovies(){
@@ -16,8 +21,20 @@ export class MoviesService {
   }
 
   getMovie(id: number){
-    const selectedMovie = this.featuredMovies.find(movie => movie.id === id)
-    return of(selectedMovie)
+/*     const selectedMovie = this.featuredMovies.find(movie => movie.id === id)
+    const similarMovies = this.getSimilarMovies(id)
+    const result = {
+      selectedMovie: selectedMovie,
+      similarMovies: similarMovies,
+      return of(result)
+    } */
+
+
+    const url = `${this.apiUrl}/api/getMovie?id=${id}`
+    const result = this.http.get<any>(url)
+    console.log(url)
+
+    return result
   }
 
 
@@ -105,7 +122,7 @@ export class MoviesService {
       formattedMovieResponse.push(fullMovie)
     }
 
-    return(of(formattedMovieResponse))
+    return(formattedMovieResponse)
   }
 
 
