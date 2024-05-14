@@ -21,8 +21,8 @@ import { UsersMoviesService } from "../../services/firebase/users-movies.service
 	styleUrl: "./watchlist.component.css",
 })
 export class WatchlistComponent implements OnInit {
-    watchedArray: string[] = []
-    watchlistArray: string[] = []
+	watchedArray = [];
+	watchlistArray = [];
 	movies: any[] = [];
 	posterUrl = "https://image.tmdb.org/t/p/w500";
 
@@ -31,19 +31,28 @@ export class WatchlistComponent implements OnInit {
 		private usersMoviesService: UsersMoviesService
 	) {}
 
-	ngOnInit(): void {
+	ngOnInit() {
 		this.moviesService.getMovies().subscribe((contents) => {
 			this.movies = contents;
 		});
-        this.usersMoviesService.userData$.subscribe((data) => {
-            data['watched'].forEach((movie) => {
-                this.watchlistArray.push(movie)
-            });
-            data['watchlist'].forEach((movie) => {
-                this.watchlistArray.push(movie)
-            });
-            
+		this.usersMoviesService.userData$.subscribe((data) => {
+            data["watched"].forEach((movie) => {
+                this.getMovieImg(movie, "watched");
+			});
+            data["watchlist"].forEach((movie) => {
+                this.getMovieImg(movie, "watchlist");
+			});
+		});
+	}
+
+    getMovieImg(movieId: number, movieType: string) {
+        this.moviesService.getMovie(Number(movieId), false).subscribe((contents) => {
+            const movieImg = this.posterUrl + contents.selectedMovie.poster_path;
+            if (movieType === "watched") { 
+                this.watchedArray.push({movieId: movieId, poster_path: movieImg});
+            } else if (movieType === "watchlist") { 
+                this.watchlistArray.push({movieId: movieId, poster_path: movieImg});
+            }
         });
 	}
 }
-

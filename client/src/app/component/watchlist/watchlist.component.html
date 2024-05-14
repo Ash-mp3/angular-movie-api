@@ -7,11 +7,11 @@
         <mat-card-content class="mainCardContent">
           <div
             class="movieCard w-[50%] md:w-[20%]"
-            *ngFor="let movie of movies"
-            [routerLink]="'/details/' + movie.id"
+            *ngFor="let movie of watchlistArray"
+            [routerLink]="'/details/' + movie.movieId"
           >
             <img
-              [src]="posterUrl + movie.poster_path"
+              [src]="movie.poster_path"
             />
           </div>
         </mat-card-content>
@@ -22,11 +22,11 @@
         <mat-card-content class="mainCardContent">
           <div
             class="movieCard w-[50%] md:w-[20%]"
-            *ngFor="let movie of movies"
-            [routerLink]="'/details/' + movie.id"
+            *ngFor="let movie of watchedArray"
+            [routerLink]="'/details/' + movie.movieId"
           >
             <img
-              [src]="posterUrl + movie.poster_path"
+              [src]="movie.poster_path"
             />
           </div>
         </mat-card-content>
