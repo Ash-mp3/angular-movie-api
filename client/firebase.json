@@ -1,17 +1,13 @@
 {
-  "hosting": [
-    {
-      "public": "public",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ]
-    },
-    {
-      "target": "client",
-      "source": ".",
-      "frameworksBackend": {}
+  "hosting": {
+    "source": "./dist/client/browser",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "frameworksBackend": {
+      "region": "us-west1"
     }
-  ]
+  }
 }

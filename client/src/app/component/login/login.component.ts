@@ -48,8 +48,7 @@ export class LoginComponent {
   }
 
   loginUser(Email: string, Password: string) {
-    const isUserLoggedIn = this.AuthService.signIn(Email, Password);
-    console.log(isUserLoggedIn);
+    this.AuthService.signIn(Email, Password);
   }
 
   loginWithGoogle() {
@@ -62,15 +61,7 @@ export class LoginComponent {
       return;
     }
     const formData = this.form.value;
-    console.log('Form data:', formData);
     this.loginUser(formData.Email, formData.Password);
     this.form.reset();
   }
 }
-
-//   async ngOnInit(): Promise<void> {
-//       const collectionRef = collection(this.firestore, 'users');
-//       const snapshots = await getDocs(collectionRef);
-//       const data = snapshots.docs.map(doc => doc.data());
-//       console.log(data)
-//   }

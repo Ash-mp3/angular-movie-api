@@ -16,7 +16,6 @@ import { ReviewSectionComponent } from "./review-section/review-section.componen
 import { MatCard } from "@angular/material/card";
 import { MatIcon } from "@angular/material/icon";
 import { MatButton } from "@angular/material/button";
-import { user } from "@angular/fire/auth";
 
 @Component({
 	selector: "app-movie-details",
@@ -58,7 +57,6 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
 		//then check to see if the current moveie has been seen.
 		this.usersMoviesService.userData$.subscribe((data) => {
 			this.userData = data;
-			console.log("user data in details page: ", data);
 		});
 		this.getNewPageContents();
 
@@ -86,7 +84,6 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
 		const id = Number(this.route.snapshot.params["id"]);
 		this.moviesService.getMovie(id).subscribe((item) => {
 			this.movie = item;
-			console.log(item);
 		});
 
 		this.moviesService.getSimilarMovies(id).subscribe((item) => {
@@ -94,7 +91,6 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
 			this.isLoading = false;
 		});
 
-    console.log(this.userData)
 		this.userData.watched.forEach((movieId) => {
 			if (movieId === this.movie.id) {
 				this.hasSeenMovie = true;

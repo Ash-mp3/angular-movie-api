@@ -1,4 +1,4 @@
-*{
+* {
     font-size: 20px
 }
 
@@ -20,6 +20,16 @@
 }
 .rating-title{
     @apply text-4xl p-6 text-center font-bold
+}
+
+#commentForm {
+    position: relative;
+}
+
+#commentForm button {
+    position: absolute;
+    bottom: 10px;
+    right: 0;
 }
 
 
