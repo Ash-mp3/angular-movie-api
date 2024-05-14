@@ -31,11 +31,11 @@ import { MovieReviewService } from "../../../services/firebase/movie-reviews.ser
 })
 export class ReviewSectionComponent implements OnInit {
 
-  constructor( 
-    private movieReviewService: MovieReviewService,
-    private route: ActivatedRoute,
-    private router: Router,
-  ){
+    constructor(
+        private movieReviewService: MovieReviewService,
+        private route: ActivatedRoute,
+        private router: Router,
+    ) { }
 
 	rating: number = null;
 	comment: string = "";
@@ -62,7 +62,7 @@ export class ReviewSectionComponent implements OnInit {
     //gets called when the component is created and on every submission
 	async getMovieReviews() {
         const id = this.route.snapshot.params["id"];
-        (await this.moviesService.getMovieReviews(id)).subscribe((item) => {
+        (await this.movieReviewService.getMovieReviews(id)).subscribe((item) => {
             this.reviews = item;
         });
     }
@@ -73,7 +73,7 @@ export class ReviewSectionComponent implements OnInit {
         if(this.comment === "" && this.rating === null) {
             return
         }
-        this.moviesService.checkIfMovieIsNewToDb(movieId, this.comment, this.rating)
+        this.movieReviewService.checkIfMovieIsNewToDb(movieId, this.comment, this.rating)
         //clears form and updates comment list
         this.comment = ""
         this.rating = null
