@@ -60,6 +60,8 @@ export class MovieReviewService {
 		}
 	}
 
+
+  
 	async getMovieReviews(movieId: string) {
 		let movieData;
 		const moveisCollection = collection(this.fs, "movies");
@@ -71,6 +73,8 @@ export class MovieReviewService {
 		});
 		return of(movieData);
 	}
+
+
 	//adds the movie object to the db
 	async addMovie(movieId: string, review: string, rating: number) {
 		const movieCollection = collection(this.fs, "movies");
@@ -88,6 +92,8 @@ export class MovieReviewService {
 		//then adds the review to the object
 		this.addReview(movieId, review, rating);
 	}
+
+
 
 	//addes the review to the movie object
 	async addReview(movieId: string, review: string, rating: number) {

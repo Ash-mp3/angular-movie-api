@@ -17,7 +17,7 @@ export class SearchComponent implements OnInit {
   @ViewChild('noMovie') noMovie: ElementRef | undefined;
 
   ngAfterViewInit() {
-    if (this.movies.results.length == 0) {
+    if (!this.movies) {
       this.noMovie.nativeElement.selected = 'true';
     }
   }
@@ -29,7 +29,7 @@ export class SearchComponent implements OnInit {
   }
   onSearch(query: string) {
       this.searchService.getquery('https://api.themoviedb.org/3/search/movie?query=' + query + '&include_adult=true&language=en-US&page=1').subscribe(
-        (result) => { this.movies = result; console.log(this.movies.results); return this.movies.results }
+        (result) => { this.movies = result; console.log(this.movies); return this.movies }
         , (error) => { console.error(error) }
       )
   }
