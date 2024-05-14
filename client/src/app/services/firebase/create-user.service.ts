@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { collection, getDocs } from 'firebase/firestore';
 import { doc, setDoc } from "firebase/firestore";
 import { Firestore } from '@angular/fire/firestore';
-import { User } from '../models/user';
+import { User } from '../../models/user';
 import { Auth } from '@angular/fire/auth';
 
 @Injectable({

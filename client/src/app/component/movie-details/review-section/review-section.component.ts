@@ -8,7 +8,8 @@ import { Router, NavigationEnd } from "@angular/router";
 import { RouterModule } from "@angular/router";
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { ActivatedRoute } from "@angular/router";
-import { MoviesService } from "../../../services/movies.service";
+import { MovieReviewService } from "../../../services/firebase/movie-reviews.service";
+
 
 
 @Component({
@@ -30,11 +31,11 @@ import { MoviesService } from "../../../services/movies.service";
 })
 export class ReviewSectionComponent implements OnInit {
 
-	constructor(
-		private moviesService: MoviesService,
-		private route: ActivatedRoute,
-        private router: Router,
-    ) {}
+  constructor( 
+    private movieReviewService: MovieReviewService,
+    private route: ActivatedRoute,
+    private router: Router,
+  ){
 
 	rating: number = null;
 	comment: string = "";

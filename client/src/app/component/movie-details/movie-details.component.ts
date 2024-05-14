@@ -5,8 +5,8 @@ import {
 	ElementRef,
 	AfterViewInit,
 } from "@angular/core";
-import { MoviesService } from "../../services/movies.service";
-import { UsersMoviesService } from "../../services/users-movies.service";
+import { MoviesService } from "../../services/backend-api/movies.service";
+import { UsersMoviesService } from "../../services/firebase/users-movies.service";
 import { ActivatedRoute } from "@angular/router";
 import { CommonModule, ViewportScroller } from "@angular/common";
 import { RouterModule, Router, NavigationEnd } from "@angular/router";
@@ -48,7 +48,6 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
 		private moviesService: MoviesService,
 		private route: ActivatedRoute,
 		private router: Router,
-		private viewportScroller: ViewportScroller,
 		private usersMoviesService: UsersMoviesService
 	) {}
 
@@ -62,10 +61,18 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
 
 		this.router.events.subscribe((event) => {
 			if (event instanceof NavigationEnd) {
+				this.hasSeenMovie = false;
+				this.isInWatchList = false;
+				this.movie = null;
+				this.similarMovies = [];
+				this.isLoading = false;
+				this.isSmallScreen = window.innerWidth < 731 ? true : false;
+
 				this.getNewPageContents();
 				this.animateNavbar();
+
 				if (this.isSmallScreen) {
-					window.scrollTo({ top: 0 /* , behavior: 'smooth' */ });
+					window.scrollTo({ top: 0 });
 				}
 			}
 		});
@@ -75,6 +82,8 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
 		});
 	}
 
+
+	//function to get page contents
 	getNewPageContents() {
 		this.isLoading = true;
 
@@ -83,12 +92,9 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
 
 		const id = Number(this.route.snapshot.params["id"]);
 		this.moviesService.getMovie(id).subscribe((item) => {
-			this.movie = item;
-		});
-
-		this.moviesService.getSimilarMovies(id).subscribe((item) => {
-			this.similarMovies = item;
-			this.isLoading = false;
+			this.movie = item.selectedMovie;
+			this.similarMovies = item.similarMovies;
+ 			this.isLoading = false;
 		});
 
 		this.userData.watched.forEach((movieId) => {
@@ -107,15 +113,19 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
 		this.animateNavbar();
 	}
 
+	//animate the side navbar
 	animateNavbar() {
-		const sideNavHtml = this.sideNav.nativeElement;
-
-		sideNavHtml.classList.remove("nav-animation");
-
-		setTimeout(() => {
-			sideNavHtml.classList.add("nav-animation");
-		});
+		//only animate if side nav exists
+		if(this.sideNav){
+			const sideNavHtml = this.sideNav.nativeElement;
+			sideNavHtml.classList.remove("nav-animation");
+	
+			setTimeout(() => {
+				sideNavHtml.classList.add("nav-animation");
+			});
+		}
 	}
+
 
     toggleHasSeenMovie(movieId: string) {
         const typeOfList = 'watched'

@@ -2,10 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import { MatTabsModule } from "@angular/material/tabs";
 import { NavbarComponent } from "../navbar/navbar.component";
 import { MatCardModule } from "@angular/material/card";
-import { MoviesService } from "../../services/movies.service";
+import { MoviesService } from "../../services/backend-api/movies.service";
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
-import { UsersMoviesService } from "../../services/users-movies.service";
+import { UsersMoviesService } from "../../services/firebase/users-movies.service";
 
 @Component({
 	selector: "app-watchlist",

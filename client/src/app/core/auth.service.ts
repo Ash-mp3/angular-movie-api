@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, getAuth } from 'firebase/auth';
 import { Router } from '@angular/router';
-import { CreateUserService } from '../services/create-user.service';
-import { UsersMoviesService } from '../services/users-movies.service';
+import { CreateUserService } from '../services/firebase/create-user.service';
+import { UsersMoviesService } from '../services/firebase/users-movies.service';
 
 
 @Injectable({
