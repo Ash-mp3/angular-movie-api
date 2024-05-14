@@ -5,8 +5,8 @@ import {
 	ElementRef,
 	AfterViewInit,
 } from "@angular/core";
-import { MoviesService } from "../../services/movies.service";
-import { UsersMoviesService } from "../../services/users-movies.service";
+import { MoviesService } from "../../services/backend-api/movies.service";
+import { UsersMoviesService } from "../../services/firebase/users-movies.service";
 import { ActivatedRoute } from "@angular/router";
 import { CommonModule, ViewportScroller } from "@angular/common";
 import { RouterModule, Router, NavigationEnd } from "@angular/router";

@@ -6,7 +6,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
-import { MoviesService } from '../../services/movies.service';
+import { MoviesService } from '../../services/backend-api/movies.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -50,6 +50,7 @@ export class PopularMoviesComponent implements OnInit {
 
   ngOnInit(): void {
     this.moviesService.getMovies().subscribe(contents => {
+        console.log(contents)
         this.movies = contents
       }
     )

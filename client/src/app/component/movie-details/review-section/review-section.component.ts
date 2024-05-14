@@ -7,7 +7,8 @@ import { Router, NavigationEnd } from '@angular/router';
 import { RouterModule } from '@angular/router';
 
 import { ActivatedRoute } from '@angular/router';
-import { MoviesService } from '../../../services/movies.service';
+import { MovieReviewService } from '../../../services/firebase/movie-reviews.service';
+
 
 
 @Component({
@@ -26,7 +27,7 @@ export class ReviewSectionComponent implements OnInit{
 
 
   constructor( 
-    private moviesService: MoviesService,
+    private movieReviewService: MovieReviewService,
     private route: ActivatedRoute,
     private router: Router,
   ){
@@ -60,7 +61,7 @@ export class ReviewSectionComponent implements OnInit{
 
     const id = Number(this.route.snapshot.params['id']);
 
-    this.moviesService.getMovieReviews(id).subscribe((item: any) => {
+    this.movieReviewService.getMovieReviews(id).subscribe((item: any) => {
       this.reviews = item
     })
   }
