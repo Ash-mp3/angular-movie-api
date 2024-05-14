@@ -20,8 +20,8 @@ export class MoviesService {
 
   }
 
-  getMovie(id: number){
-    const url = `${this.apiUrl}/api/getMovie?id=${id}`
+  getMovie(id: number, includeSimilarMovies: boolean){
+    const url = `${this.apiUrl}/api/getMovie?id=${id}&includeSimilarMovies=${includeSimilarMovies}`
     const result = this.http.get<any>(url)
     return result
   }

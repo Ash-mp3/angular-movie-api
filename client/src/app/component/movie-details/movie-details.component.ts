@@ -71,7 +71,7 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
 		this.similarMovies = [];
 
 		const id = Number(this.route.snapshot.params["id"]);
-		this.moviesService.getMovie(id).subscribe((item) => {
+		this.moviesService.getMovie(id, true).subscribe((item) => {
 			this.movie = item.selectedMovie;
 			this.similarMovies = item.similarMovies;
  			this.isLoading = false;
