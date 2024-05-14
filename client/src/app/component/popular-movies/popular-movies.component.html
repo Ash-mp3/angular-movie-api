@@ -5,27 +5,34 @@
 <div class="moviesContainer">
   <mat-card *ngFor="let movie of movies" [routerLink]="'/details/' + movie.id">
     <mat-card-content>
-      <img [src]="posterUrl + movie.poster_path" class="rounded-t-lg h-3/4 xl:h-[85%]" />
+      <img [src]="posterUrl + movie.poster_path" class="" />
 
-      <section>
-        <span class="text-wrap">
+      <section class="litleDetails">
+        <p class="mx-8 text-wrap">
           {{ movie.title }}
-        </span>
+        </p>
+
         <div class="movieInfo">
-          <button
+          <section>
+
+            <button
             mat-stroked-button
             matTooltip="Release Date"
             matTooltipPosition="below"
             style="color: #eae2b7"
-          >
+            >
             {{ movie.release_date }}
           </button>
+        </section>
+          
           <span class="dot"></span>
+
           <button
             mat-stroked-button
             matTooltip="Score"
             matTooltipPosition="below"
             style="color: #eae2b7"
+            class="flex flex-row-reverse gap-2 items-center"
           >
             {{ movie.vote_average }} <mat-icon fontIcon="star"></mat-icon>
           </button>
