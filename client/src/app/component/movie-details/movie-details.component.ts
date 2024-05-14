@@ -49,7 +49,6 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
 		private moviesService: MoviesService,
 		private route: ActivatedRoute,
 		private router: Router,
-		private viewportScroller: ViewportScroller,
 		private usersMoviesService: UsersMoviesService
 	) {}
 
@@ -64,10 +63,18 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
 
 		this.router.events.subscribe((event) => {
 			if (event instanceof NavigationEnd) {
+				this.hasSeenMovie = false;
+				this.isInWatchList = false;
+				this.movie = null;
+				this.similarMovies = [];
+				this.isLoading = false;
+				this.isSmallScreen = window.innerWidth < 731 ? true : false;
+
 				this.getNewPageContents();
 				this.animateNavbar();
+
 				if (this.isSmallScreen) {
-					window.scrollTo({ top: 0 /* , behavior: 'smooth' */ });
+					window.scrollTo({ top: 0 });
 				}
 			}
 		});
@@ -77,6 +84,8 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
 		});
 	}
 
+
+	//function to get page contents
 	getNewPageContents() {
 		this.isLoading = true;
 
@@ -85,25 +94,9 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
 
 		const id = Number(this.route.snapshot.params["id"]);
 		this.moviesService.getMovie(id).subscribe((item) => {
-			this.movie = item;
-			console.log(item);
-		});
-
-		this.moviesService.getSimilarMovies(id).subscribe((item) => {
-			this.similarMovies = item;
-			this.isLoading = false;
-		});
-
-    console.log(this.userData)
-		this.userData.watched.forEach((movieId) => {
-			if (movieId === this.movie.id) {
-				this.hasSeenMovie = true;
-			}
-		});
-		this.userData.watchlist.forEach((movieId) => {
-			if (movieId === this.movie.id) {
-				this.isInWatchList = true;
-			}
+			this.movie = item.selectedMovie;
+			this.similarMovies = item.similarMovies;
+ 			this.isLoading = false;
 		});
 	}
 
@@ -111,15 +104,19 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
 		this.animateNavbar();
 	}
 
+	//animate the side navbar
 	animateNavbar() {
-		const sideNavHtml = this.sideNav.nativeElement;
-
-		sideNavHtml.classList.remove("nav-animation");
-
-		setTimeout(() => {
-			sideNavHtml.classList.add("nav-animation");
-		});
+		//only animate if side nav exists
+		if(this.sideNav){
+			const sideNavHtml = this.sideNav.nativeElement;
+			sideNavHtml.classList.remove("nav-animation");
+	
+			setTimeout(() => {
+				sideNavHtml.classList.add("nav-animation");
+			});
+		}
 	}
+
 
     toggleHasSeenMovie(movieId: string) {
         const typeOfList = 'watched'
