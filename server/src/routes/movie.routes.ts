@@ -99,6 +99,23 @@ function getMovie(id: number){
     return(foundMovie)
 }
 
+async function getSearchedMovies(query: string) {
+    let queriedUrl = searchMovieUrl + query
+    fetch(queriedUrl, {
+        method: 'GET',
+        headers: movieApiHeaders,
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error('Api response not OK')
+        }
+        return response.json()
+    }).then((data: any) => {
+        queriedMovies = data.results
+    }).catch(error => {
+        console.error(error)
+    })
+}
+
 
 movieRouter.get("/getMovies", (req, res) => {
     //time in milliseconds since last movie update
@@ -120,24 +137,6 @@ movieRouter.get("/getMovies", (req, res) => {
 movieRouter.get("/getMovie", (req, res) => {
 
     const id = Number(req.query.id)
-    console.log(req.query.includeSimilarMovies)
-    const includeSimilarMovies = req.query.includeSimilarMovies === "false" ? false : true
-
-    let formattedMovieResponse = {}
-
-    const selectedMovie = movies.find(movie => movie.id === id)
-    if (includeSimilarMovies) {
-        const similarMovies = getSimilarMovies(id, movies)
-        formattedMovieResponse = {
-            selectedMovie: selectedMovie,
-            similarMovies: similarMovies,
-        }
-    } else {
-        formattedMovieResponse = {
-            selectedMovie: selectedMovie,
-        }
-    }
-    res.send(formattedMovieResponse)
     if(typeof(id) === "number"){
         const includeSimilarMovies = req.query.includeSimilarMovies==="false"?false:true
         let formattedMovieResponse = {}
@@ -157,7 +156,6 @@ movieRouter.get("/getMovie", (req, res) => {
         }
         res.send(formattedMovieResponse)
     }
-
 })
 
 movieRouter.get("/searchMovies", (req, res) => {
@@ -167,6 +165,34 @@ movieRouter.get("/searchMovies", (req, res) => {
 })
 
 
+
+
+movieRouter.get("/movieArray", (req, res) => {
+    const stringifiedMovieArray = req.query.movieArray
+    
+    let movieArray: [] = []
+    if(typeof(stringifiedMovieArray) == "string"){
+        movieArray = JSON.parse(stringifiedMovieArray)
+    }
+
+    if(Array.isArray(movieArray)){
+        let responseArray: any[] = []
+
+        let formattedArray: number[] = []
+        movieArray.forEach((id: string) => {
+            formattedArray.push(Number(id))
+        })
+        formattedArray.forEach((id: number) => {
+            responseArray.push(getMovie(id))
+        })
+
+        res.send(responseArray)
+    } else {
+        res.status(400).send({ msg: "movieArray parameter must be an array" })
+    }
+
+
+})
 
 
 export default movieRouter
