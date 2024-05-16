@@ -22,7 +22,7 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  movies: any
+  movies: any = {results: []}
   public query: string = '';
   constructor(private searchService: SearchService) { }
   ngOnInit(): void {

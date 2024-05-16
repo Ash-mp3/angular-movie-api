@@ -51,7 +51,6 @@ async function updateMovies(){
 
 
 function getMovie(id: number){
-    console.log(id)
     let foundMovie = movies.find(movie => movie.id === id)
 
     if(foundMovie === undefined){
@@ -98,7 +97,6 @@ function getMovie(id: number){
             console.log(error)
         })
     }
-    console.log(foundMovie)
 
     return(foundMovie)
 }
@@ -124,26 +122,26 @@ movieRouter.get("/getMovies", (req, res) => {
 movieRouter.get("/getMovie", (req, res) => {
 
     const id = Number(req.query.id)
-    const includeSimilarMovies = req.query.includeSimilarMovies==="false"?false:true
-
-    let formattedMovieResponse = {}
-
-    let selectedMovie = movies.find(movie => movie.id === id)
-    if(selectedMovie === undefined){
-
-    }
-    if(includeSimilarMovies){
-        const similarMovies = getSimilarMovies(id, movies)
-        formattedMovieResponse = {
-            selectedMovie: selectedMovie,
-            similarMovies: similarMovies,
+    if(typeof(id) === "number"){
+        const includeSimilarMovies = req.query.includeSimilarMovies==="false"?false:true
+        let formattedMovieResponse = {}
+    
+        let selectedMovie = getMovie(id)
+    
+        if(includeSimilarMovies){
+            const similarMovies = getSimilarMovies(id, movies)
+            formattedMovieResponse = {
+                selectedMovie: selectedMovie,
+                similarMovies: similarMovies,
+            }
+        } else {
+            formattedMovieResponse = {
+                selectedMovie: selectedMovie,
+            }
         }
-    } else {
-        formattedMovieResponse = {
-            selectedMovie: selectedMovie,
-        }
+        res.send(formattedMovieResponse)
     }
-    res.send(formattedMovieResponse)
+
 })
 
 
