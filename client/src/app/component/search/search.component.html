@@ -4,6 +4,6 @@
   </form>
   
   <datalist id="searchOptions">
-    <option *ngFor="let movie of movies" value="{{movie.title}}">{{movie.title}} {{movie.release_date}}</option>
+    <option *ngFor="let movie of movies.results" value="{{movie.title}}">{{movie.title}} {{movie.release_date}}</option>
     <option #noMovie value="">No Movies Found!</option>
   </datalist>

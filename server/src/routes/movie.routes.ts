@@ -81,6 +81,8 @@ movieRouter.get("/getMovies", (req, res) => {
 })
 
 
+
+
 movieRouter.get("/getMovie", (req, res) => {
 
     const id = Number(req.query.id)
@@ -101,8 +103,6 @@ movieRouter.get("/getMovie", (req, res) => {
             selectedMovie: selectedMovie,
         }
     }
-
-
     res.send(formattedMovieResponse)
 })
 
