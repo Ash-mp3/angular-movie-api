@@ -11,9 +11,9 @@ const redirectLoggedInToPopular = () => redirectLoggedInTo(['popular']);
 
 export const routes: Routes = [
     {path: 'login', component: WelcomeComponent },
-    {path: 'popular', component: PopularMoviesComponent/* , canActivate: [authGuard] */},
-    {path: 'details/:id', component: MovieDetailsComponent},
-    { path: 'watchlist', component: WatchlistComponent },
+    {path: 'popular', component: PopularMoviesComponent, canActivate: [authGuard]},
+    {path: 'details/:id', component: MovieDetailsComponent, canActivate: [authGuard]},
+    { path: 'watchlist', component: WatchlistComponent, canActivate: [authGuard]},
     { path: '**', component: WelcomeComponent},
     { path: '',   redirectTo: '/login', pathMatch: 'full' },
 ];

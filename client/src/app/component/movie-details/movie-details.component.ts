@@ -76,7 +76,6 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
 			this.similarMovies = item.similarMovies;
  			this.isLoading = false;
 		});
-        console.log(this.userData, this.movie)
 		this.userData.watched.forEach((movieId) => {
 			if (movieId === id) {
 				this.hasSeenMovie = true;
