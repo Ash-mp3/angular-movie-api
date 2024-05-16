@@ -15,12 +15,14 @@
     flex-wrap: wrap;
     row-gap: 30px;
     padding: 0;
+    
 }
 
 .movieCard {
     display: flex;
     justify-content: center;
     align-items: center;
+    
     
 }
 

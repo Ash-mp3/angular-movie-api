@@ -25,4 +25,10 @@ export class MoviesService {
     const result = this.http.get<any>(url)
     return result
   }
+
+  searchedMovies(query: string){
+    const url = `${this.apiUrl}/api/searchMovies?query=${query}`
+    const result = this.http.get<any>(url)
+    return result
+  }
 }
