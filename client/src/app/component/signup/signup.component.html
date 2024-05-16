@@ -6,7 +6,13 @@
       <mat-card-content class="cardContent bg-primary">
         <form [formGroup]="form" class="loginForm">
           <input type="email" name="email" placeholder="Email" formControlName="Email" required />
+          <mat-error *ngIf="form.get('Email')?.invalid && form.get('Email')?.touched">
+            Email invalid
+          </mat-error>
           <input type="password" name="password" placeholder="Password" formControlName="Password" required />
+          <mat-error *ngIf="form.get('Password').invalid && form.get('Password')?.touched">
+            Password invalid
+          </mat-error>
         </form>
       </mat-card-content>
       <mat-card-actions class="cardActions bg-primary rounded-b-lg">
