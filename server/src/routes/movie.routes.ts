@@ -4,6 +4,7 @@ import * as dotenv from 'dotenv';
 
 //code from other files
 import getSimilarMovies from "../functions/getSimilarMovies";
+import { error } from "console";
 
 //app config
 dotenv.config()
@@ -14,33 +15,30 @@ const movieApiKey = process.env.MOVIE_API_KEY
 
 
 
+const searchMovieUrl = 'https://api.themoviedb.org/3/search/movie?query='
+const movieApiUrl = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc';
+const movieApiHeaders = new Headers();
+movieApiHeaders.append('accept', 'application/json');
+movieApiHeaders.append('Authorization', `Bearer ${movieApiKey}`);
 
-
-
-const millisecondsInDay: number = 1000*60*60*24
+const millisecondsInDay: number = 1000 * 60 * 60 * 24
 let lastMovieUpdate: number = Date.now()
 
 let movies: any[] = []
-
+let queriedMovies: any[] = []
 updateMovies()
 
 
-async function updateMovies(){
-    const movieApiUrl = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc';
-
-    const movieApiHeaders = new Headers();
-    movieApiHeaders.append('accept', 'application/json');
-    movieApiHeaders.append('Authorization', `Bearer ${movieApiKey}`);
-
+async function updateMovies() {
     fetch(movieApiUrl, {
         method: 'GET',
         headers: movieApiHeaders,
     }
     ).then(response => {
-    if(!response.ok){
-        throw new Error('Api response not OK')
-    }
-    return response.json()
+        if (!response.ok) {
+            throw new Error('Api response not OK')
+        }
+        return response.json()
     }).then((data: any) => {
         movies = data.results
         lastMovieUpdate = Date.now()
@@ -51,7 +49,6 @@ async function updateMovies(){
 
 
 function getMovie(id: number){
-    console.log(id)
     let foundMovie = movies.find(movie => movie.id === id)
 
     if(foundMovie === undefined){
@@ -98,9 +95,25 @@ function getMovie(id: number){
             console.log(error)
         })
     }
-    console.log(foundMovie)
 
     return(foundMovie)
+}
+
+async function getSearchedMovies(query: string) {
+    let queriedUrl = searchMovieUrl + query
+    fetch(queriedUrl, {
+        method: 'GET',
+        headers: movieApiHeaders,
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error('Api response not OK')
+        }
+        return response.json()
+    }).then((data: any) => {
+        queriedMovies = data.results
+    }).catch(error => {
+        console.error(error)
+    })
 }
 
 
@@ -109,7 +122,7 @@ movieRouter.get("/getMovies", (req, res) => {
     const timeSinceLastMovieUpdate = Date.now() - lastMovieUpdate
 
     //if the amount of time since last movie update is greater than 1 day, update movies before sending the response
-    if(timeSinceLastMovieUpdate > millisecondsInDay ){
+    if (timeSinceLastMovieUpdate > millisecondsInDay) {
         updateMovies().then(() => {
             res.send(movies)
         })
@@ -124,27 +137,33 @@ movieRouter.get("/getMovies", (req, res) => {
 movieRouter.get("/getMovie", (req, res) => {
 
     const id = Number(req.query.id)
-    const includeSimilarMovies = req.query.includeSimilarMovies==="false"?false:true
-
-    let formattedMovieResponse = {}
-
-    let selectedMovie = movies.find(movie => movie.id === id)
-    if(selectedMovie === undefined){
-
-    }
-    if(includeSimilarMovies){
-        const similarMovies = getSimilarMovies(id, movies)
-        formattedMovieResponse = {
-            selectedMovie: selectedMovie,
-            similarMovies: similarMovies,
+    if(typeof(id) === "number"){
+        const includeSimilarMovies = req.query.includeSimilarMovies==="false"?false:true
+        let formattedMovieResponse = {}
+    
+        let selectedMovie = getMovie(id)
+    
+        if(includeSimilarMovies){
+            const similarMovies = getSimilarMovies(id, movies)
+            formattedMovieResponse = {
+                selectedMovie: selectedMovie,
+                similarMovies: similarMovies,
+            }
+        } else {
+            formattedMovieResponse = {
+                selectedMovie: selectedMovie,
+            }
         }
-    } else {
-        formattedMovieResponse = {
-            selectedMovie: selectedMovie,
-        }
+        res.send(formattedMovieResponse)
     }
-    res.send(formattedMovieResponse)
 })
+
+movieRouter.get("/searchMovies", (req, res) => {
+    const searchQuery = String(req.query.query)
+    const searchedMovies = getSearchedMovies(searchQuery)
+    res.send(searchedMovies)
+})
+
 
 
 
@@ -176,8 +195,4 @@ movieRouter.get("/movieArray", (req, res) => {
 })
 
 
-
-
 export default movieRouter
-
-
