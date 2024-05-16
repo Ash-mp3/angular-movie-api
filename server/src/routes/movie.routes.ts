@@ -109,7 +109,7 @@ movieRouter.get("/getMovie", (req, res) => {
 movieRouter.get("/searchMovies", (req, res) => {
     const searchQuery = String(req.query.query)
     const searchedMovies = getSearchedMovies(searchQuery)
-    res.send(queriedMovies)
+    res.send(searchedMovies)
 })
 
 
