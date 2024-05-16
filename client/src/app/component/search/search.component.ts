@@ -23,7 +23,8 @@ export class SearchComponent implements OnInit {
       this.noMovie.nativeElement.selected = 'true';
     }
   }
-movies: any = {}
+
+  movies: any = {results: []}
   public query: string = '';
   constructor(private moviesService: MoviesService) { }  ngOnInit(): void {
   }

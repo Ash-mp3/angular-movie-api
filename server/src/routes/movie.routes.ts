@@ -47,23 +47,57 @@ async function updateMovies() {
     })
 }
 
-async function getSearchedMovies(query: string) {
-    let queriedUrl = searchMovieUrl + query
-    fetch(queriedUrl, {
-        method: 'GET',
-        headers: movieApiHeaders,
-    }).then(response => {
-        if (!response.ok) {
-            throw new Error('Api response not OK')
-        }
-        return response.json()
-    }).then((data: any) => {
-        queriedMovies = data.results
-    }).catch(error => {
-        console.error(error)
-    })
-}
 
+function getMovie(id: number){
+    let foundMovie = movies.find(movie => movie.id === id)
+
+    if(foundMovie === undefined){
+        const movieApiHeaders = new Headers();
+
+        const movieApiUrl = `https://api.themoviedb.org/3/movie/${id}`
+        movieApiHeaders.append('accept', 'application/json');
+        movieApiHeaders.append('Authorization', `Bearer ${movieApiKey}`);
+
+        fetch(movieApiUrl, {
+            method: 'GET',
+            headers: movieApiHeaders,
+        }).then(response => {
+            if(!response.ok){
+                throw new Error('Api response not OK')
+            }
+            return response.json()
+
+        }).then((data: any) => {
+            let genre_ids: any[] = []
+            data.genre_ids.forEach((item: any) => {
+                genre_ids.push(item.id)
+            });
+
+            const formattedMovie = {
+                adult: data.adult,
+                backdrop_path: data.backdrop_path,
+                genre_ids: genre_ids,
+                id: id,
+                original_language: data.original_language,
+                original_title: data.original_title,
+                overview: data.overview,
+                popularity: data.popular,
+                poster_path: data.poster_path,
+                release_date: data.release_date,
+                title: data.title,
+                video: false,
+                vote_average: data.vote_average,
+                vote_count: data.vote_count
+            }
+
+            foundMovie = formattedMovie
+        }).catch(error => {
+            console.log(error)
+        })
+    }
+
+    return(foundMovie)
+}
 
 
 movieRouter.get("/getMovies", (req, res) => {
@@ -104,6 +138,26 @@ movieRouter.get("/getMovie", (req, res) => {
         }
     }
     res.send(formattedMovieResponse)
+    if(typeof(id) === "number"){
+        const includeSimilarMovies = req.query.includeSimilarMovies==="false"?false:true
+        let formattedMovieResponse = {}
+    
+        let selectedMovie = getMovie(id)
+    
+        if(includeSimilarMovies){
+            const similarMovies = getSimilarMovies(id, movies)
+            formattedMovieResponse = {
+                selectedMovie: selectedMovie,
+                similarMovies: similarMovies,
+            }
+        } else {
+            formattedMovieResponse = {
+                selectedMovie: selectedMovie,
+            }
+        }
+        res.send(formattedMovieResponse)
+    }
+
 })
 
 movieRouter.get("/searchMovies", (req, res) => {

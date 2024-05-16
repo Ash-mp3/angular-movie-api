@@ -8,10 +8,10 @@
           <div
             class="movieCard w-[50%] md:w-[20%]"
             *ngFor="let movie of watchlistArray"
-            [routerLink]="'/details/' + movie.movieId"
+            [routerLink]="'/details/' + movie.id"
           >
             <img
-              [src]="movie.poster_path"
+              [src]="posterUrl + movie.poster_path"
             />
           </div>
         </mat-card-content>
@@ -23,10 +23,11 @@
           <div
             class="movieCard w-[50%] md:w-[20%]"
             *ngFor="let movie of watchedArray"
-            [routerLink]="'/details/' + movie.movieId"
+            [routerLink]="'/details/' + movie.id"
           >
+
             <img
-              [src]="movie.poster_path"
+              [src]="posterUrl + movie.poster_path"
             />
           </div>
         </mat-card-content>

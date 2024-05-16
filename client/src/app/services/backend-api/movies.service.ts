@@ -26,6 +26,12 @@ export class MoviesService {
     return result
   }
 
+  getMovieArray(ids: number[]){
+    const url = `${this.apiUrl}/api/movieArray?movieArray=${JSON.stringify(ids)}`
+    const result = this.http.get<any>(url)
+    return result
+  }
+
   searchedMovies(query: string){
     const url = `${this.apiUrl}/api/searchMovies?query=${query}`
     const result = this.http.get<any>(url)
