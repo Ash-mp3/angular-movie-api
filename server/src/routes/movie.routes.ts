@@ -69,7 +69,7 @@ function getMovie(id: number){
 
         }).then((data: any) => {
             let genre_ids: any[] = []
-            data.genre_ids.forEach((item: any) => {
+            data.genres.forEach((item: any) => {
                 genre_ids.push(item.id)
             });
 
