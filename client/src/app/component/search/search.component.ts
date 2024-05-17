@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, OnInit, ViewChild, } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -19,7 +19,8 @@ export class SearchComponent implements OnInit {
   
   public movies: any[];
   public query: string = '';
-  constructor(private moviesService: MoviesService
+  selectedMovie: string = ''
+  constructor(private moviesService: MoviesService, private router: Router
   ) { } ngOnInit(): void {
   }
   onSearch(query: string) {
@@ -35,7 +36,8 @@ export class SearchComponent implements OnInit {
     this.query = event.target.value
     this.onSearch(this.query)
   }
-  toDetails(input: string) {
-    console.log(input)
+  toDetails(event: any) {
+    this.selectedMovie = event.option.value
+    this.router.navigate(['/details', this.selectedMovie])
   }
 }
