@@ -15,7 +15,7 @@ const movieApiKey = process.env.MOVIE_API_KEY
 
 
 
-const searchMovieUrl = 'https://api.themoviedb.org/3/search/movie?query='
+const searchMovieUrl = 'https://api.themoviedb.org/3/search/movie?include_adult=false&query='
 const movieApiUrl = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc';
 const movieApiHeaders = new Headers();
 movieApiHeaders.append('accept', 'application/json');
@@ -100,7 +100,7 @@ function getMovie(id: number){
 }
 
 async function getSearchedMovies(query: string) {
-    let queriedUrl = searchMovieUrl + query
+    let queriedUrl = searchMovieUrl + query;
     fetch(queriedUrl, {
         method: 'GET',
         headers: movieApiHeaders,
@@ -160,8 +160,8 @@ movieRouter.get("/getMovie", (req, res) => {
 
 movieRouter.get("/searchMovies", (req, res) => {
     const searchQuery = String(req.query.query)
-    const searchedMovies = getSearchedMovies(searchQuery)
-    res.send(searchedMovies)
+    getSearchedMovies(searchQuery)
+    res.send(queriedMovies)
 })
 
 

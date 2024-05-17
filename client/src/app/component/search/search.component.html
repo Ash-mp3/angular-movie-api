@@ -1,9 +1,17 @@
 <form class="searchContainer">
-    <input class="search" list="searchOptions" (input)="onquery($event)" type="text" placeholder="Search..." />
-    <button class="searchButton"><mat-icon fontIcon="search"></mat-icon></button>
-  </form>
-  
-  <datalist id="searchOptions">
-    <option *ngFor="let movie of movies.results" value="{{movie.title}}">{{movie.title}} {{movie.release_date}}</option>
-    <option #noMovie value="">No Movies Found!</option>
-  </datalist>
+  <input
+    class="search"
+    list="searchOptions"
+    (input)="onquery($event)"
+    type="text"
+    placeholder="Search..."
+  />
+  <button class="searchButton" (click)="toDetails(query)"><mat-icon fontIcon="search"></mat-icon></button>
+</form>
+
+<datalist id="searchOptions">
+  <option *ngFor="let movie of movies" value="{{ movie.title }}">
+    {{ movie.title }} {{ movie.release_date }}
+  </option>
+  <option #noMovie>No Movies Found!</option>
+</datalist>
