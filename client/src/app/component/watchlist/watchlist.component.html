@@ -1,37 +1,28 @@
 <app-navbar></app-navbar>
 
 <div id="watchlistPage" class="bg-lightBlack">
-  <mat-tab-group id="tabGroup" color="accent">
-    <mat-tab label="WatchList" class="watchlistTab">
-      <mat-card class="mainCard" >
-        <mat-card-content class="mainCardContent">
-          <div
-            class="movieCard w-[50%] md:w-[20%]"
-            *ngFor="let movie of watchlistArray"
-            [routerLink]="'/details/' + movie.id"
-          >
-            <img
-              [src]="posterUrl + movie.poster_path"
-            />
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </mat-tab>
-    <mat-tab label="Watched Films">
-      <mat-card class="mainCard">
-        <mat-card-content class="mainCardContent">
-          <div
-            class="movieCard w-[50%] md:w-[20%]"
-            *ngFor="let movie of watchedArray"
-            [routerLink]="'/details/' + movie.id"
-          >
-
-            <img
-              [src]="posterUrl + movie.poster_path"
-            />
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </mat-tab>
-  </mat-tab-group>
+    <mat-tab-group id="tabGroup" color="accent">
+        <mat-tab label="WatchList" class="watchlistTab">
+            <mat-card class="mainCard">
+                <mat-card-content class="mainCardContent">
+                    <div class="movieCard w-[50%] md:w-[20%]"
+                        *ngFor="let movie of watchlistArray"
+                        [routerLink]="'/details/' + movie.id">
+                        <img [src]="posterUrl + movie.poster_path" />
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-tab>
+        <mat-tab label="Watched Films">
+            <mat-card class="mainCard">
+                <mat-card-content class="mainCardContent">
+                    <div class="movieCard w-[50%] md:w-[20%]"
+                        *ngFor="let movie of watchedArray"
+                        [routerLink]="'/details/' + movie.id">
+                        <img [src]="posterUrl + movie.poster_path" />
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-tab>
+    </mat-tab-group>
 </div>
