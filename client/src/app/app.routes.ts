@@ -5,12 +5,14 @@ import { WatchlistComponent } from './component/watchlist/watchlist.component';
 import { WelcomeComponent } from './component/welcome/welcome.component';
 import {  redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
 import { authGuard } from './core/auth.guard';
+import { LoadingComponent } from './component/movie-details/loading/loading.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToPopular = () => redirectLoggedInTo(['popular']);
 
 export const routes: Routes = [
     {path: 'login', component: WelcomeComponent },
+    {path: 'notFound', component: LoadingComponent, /*canActivate: [authGuard]*/},
     {path: 'popular', component: PopularMoviesComponent, /*canActivate: [authGuard]*/},
     {path: 'details/:id', component: MovieDetailsComponent, canActivate: [authGuard]},
     { path: 'watchlist', component: WatchlistComponent, canActivate: [authGuard]},
