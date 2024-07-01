@@ -46,6 +46,7 @@ export class WatchlistComponent implements OnInit {
             const movieImg = this.posterUrl + contents.selectedMovie.poster_path;
             if (movieType === "watched") { 
                 this.watchedArray.push({movieId: movieId, poster_path: movieImg});
+				console.log(this.watchedArray)
             } else if (movieType === "watchlist") { 
                 this.watchlistArray.push({movieId: movieId, poster_path: movieImg});
             }

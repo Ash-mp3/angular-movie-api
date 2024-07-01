@@ -18,6 +18,22 @@
     @apply bg-primary
 }
 
+.noFilmsMsg {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+    @apply text-secondaryAccent
+}
+
+.noFilmsMsg p {
+    padding: 15px 30px;
+    margin: 25px;
+    @apply bg-primary;
+    border-radius: 5px;
+}
+
 .mainCardContent {
     display: flex;
     flex-wrap: wrap;
