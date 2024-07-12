@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, getAuth } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, getAuth, signOut } from 'firebase/auth';
 import { Router } from '@angular/router';
 import { CreateUserService } from '../services/firebase/create-user.service';
 import { UsersMoviesService } from '../services/firebase/users-movies.service';
@@ -61,5 +61,14 @@ export class AuthService {
             }).catch((error) => {
                 console.error(error.code, error.message)
             })
+    }
+
+    signOut(): void {
+        const auth = getAuth();
+        signOut(auth).then(() => {
+            this.router.navigate(['/login']);
+        }).catch((error) => {
+            console.error(error.code, error.message)
+        })
     }
 }

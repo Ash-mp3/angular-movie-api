@@ -1,11 +1,11 @@
 <div class="w-full">
     <mat-toolbar color="warn" class="mb-4">
-        <span>AAAMovies</span>
+        <span class="cursor-pointer" routerLink="/popular">AAAMovies</span>
         <button mat-mini-fab matTooltip="Go to watchlist" (click)="checkRoute()" [mat-menu-trigger-for]="menu" style="color: #EAE2B7;">A</button>
     </mat-toolbar>
     <mat-menu #menu="matMenu">
         <button *ngIf="isHome === false" mat-menu-item routerLink="/watchlist">My Movies</button>
         <button *ngIf="isHome === true" mat-menu-item routerLink="/popular">Discover Movies</button>
-        <button mat-menu-item>Sign Out</button>
+        <button mat-menu-item (click)="signOut()">Sign Out</button>
     </mat-menu>
 </div>

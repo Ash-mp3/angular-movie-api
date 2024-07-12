@@ -25,7 +25,6 @@ export class SearchComponent implements OnInit {
   }
   onSearch(query: string) {
     this.moviesService.searchedMovies(query).subscribe((data: any) => {
-      console.log(data);
       if (data.length === 0) {
         this.notFound = !this.notFound
       }
