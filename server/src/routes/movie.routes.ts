@@ -69,10 +69,7 @@ async function getMovie(id: number): Promise<any> {
                 let genre_ids: any[] = [];
                 data.genres.forEach((item: any) => {
                     genre_ids.push(item.id);
-                    console.log(item.id);
                 });
-
-                console.log(data.title);
 
                 return {
                     adult: data.adult,
