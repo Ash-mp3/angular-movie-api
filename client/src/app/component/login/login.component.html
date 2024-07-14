@@ -1,1 +1,44 @@
-<p>login works!</p>
+<mat-card id="loginCard">
+    <mat-card-header class="cardHeader bg-primary">
+        <h1 class="text-secondaryAccent">Login</h1>
+        <span class="logoSpan">AAAMovies</span>
+    </mat-card-header>
+    <mat-card-content class="cardContent bg-primary">
+        <form [formGroup]="form"
+            class="loginForm">
+            <input type="email"
+                autocomplete="email"
+                name="email"
+                placeholder="Email"
+                formControlName="Email"
+                required />
+            <mat-error *ngIf="form.get('Email')?.invalid && form.get('Email')?.touched">
+                Email invalid
+            </mat-error>
+            <input type="password"
+                autocomplete="current-password"
+                name="password"
+                placeholder="Password"
+                formControlName="Password"
+                required />
+            <mat-error *ngIf="form.get('Password').invalid && form.get('Password')?.touched">
+                Password invalid
+            </mat-error>
+        </form>
+    </mat-card-content>
+    <mat-card-actions class="cardActions bg-primary rounded-b-lg">
+        <button mat-raised-button
+            color="accent"
+            (click)="onSubmit()"
+            style="color: #EAE2B7;">Login</button>
+        <div class="flex w-full items-center text-secondaryAccent">
+            <div id="horizontalLine"
+                class="border-secondaryAccent"></div>or<div id="horizontalLine"
+                class="border-secondaryAccent"></div>
+        </div>
+        <button mat-raised-button
+            color="accent"
+            (click)="loginWithGoogle()"
+            style="color: #EAE2B7;">Login with google</button>
+    </mat-card-actions>
+</mat-card>

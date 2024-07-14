@@ -1,0 +1,42 @@
+<div class="review-section">
+    <!-- star ratings -->
+    <div>
+        <h1 class="rating-title">Rate this movie</h1>
+        <div class="star-ratings">
+            <mat-icon *ngFor="let i of [1,2,3,4,5]"
+                [ngClass]="rating === null?'gray':''"
+                [fontIcon]=" rating >= i?'star':'star_outline'"
+                class="star-icon"
+                (click)="rateMovie(i)">
+            </mat-icon>
+        </div>
+    </div>
+
+    <mat-form-field id="commentForm">
+        <mat-label>Leave a comment</mat-label>
+        <textarea [(ngModel)]="comment" matInput mat-autosize required></textarea>
+        <button mat-raised-button color="primary" (click)="submitComment()">Submit</button>
+        <mat-progress-bar *ngIf="commentsLoading" mode="indeterminate"></mat-progress-bar>
+    </mat-form-field>
+
+    <div class="comments" *ngIf="reviews">
+        <div *ngFor="let review of reviews.reviews" class="comment">
+            <div class="flex flex-wrap justify-between m-4">
+                <h1 class="comment-title">
+                    {{review.user}}
+                </h1>
+                <!-- Star rating -->
+                <div *ngIf="review.rating" class="star-ratings">
+                    <mat-icon *ngFor="let i of [1,2,3,4,5]"
+                        [fontIcon]=" review.rating >= i?'star':'star_outline'"
+                        class="comment-star-icon">
+                    </mat-icon>
+                </div>
+            </div>
+            <div *ngIf="review.review">
+                {{review.review}}
+            </div>
+        </div>
+
+    </div>
+</div>

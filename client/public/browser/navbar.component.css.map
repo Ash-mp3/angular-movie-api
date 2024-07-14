@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/component/navbar/navbar.component.css"],
+  "sourcesContent": ["span{\n    text-shadow: 1px 1px 1px #EAE2B7;\n    @apply text-secondary font-extrabold skew-x-3 -skew-y-6 text-3xl;\n    -webkit-text-stroke-width: .15px;\n    -webkit-text-stroke-color: #EAE2B7;\n    \n}\nmat-toolbar{\n    @apply flex justify-between w-full fixed z-10;\n}\n\n"],
+  "mappings": ";AAAA;AACI,eAAA,IAAA,IAAA,IAAA;AACA,eAAA;AAAA,eAAA;AAAA,aAAA,UAAA,IAAA,iBAAA,EAAA,IAAA,mBAAA,OAAA,IAAA,cAAA,MAAA,IAAA,cAAA,MAAA,IAAA,cAAA,OAAA,IAAA,eAAA,OAAA,IAAA;AAAA,aAAA;AAAA,eAAA;AAAA,eAAA;AAAA,qBAAA;AAAA,SAAA,IAAA,IAAA,IAAA,GAAA,EAAA,IAAA;AACA,6BAAA;AACA,6BAAA;AAEJ;AAEI;AAAA,YAAA;AAAA,WAAA;AAAA,WAAA;AAAA,SAAA;AAAA,mBAAA;AAA6C;",
+  "names": []
+}

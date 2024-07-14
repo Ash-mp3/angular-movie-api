@@ -1,0 +1,19 @@
+#loginPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.tabGroup {
+    border-radius: 10px;
+}
+
+.loginTab:first-child {
+    height: 100%;
+}
+
+.mdc-tab__text-label{
+    @apply text-secondaryAccent
+}

@@ -1,1 +1,44 @@
-<p>popular-movies works!</p>
+<div class="flex flex-col justify-between gap-16 bg-lightBlack">
+  <app-navbar></app-navbar>
+  <app-search></app-search>
+</div>
+<div class="moviesContainer">
+  <div class="w-full h-[10%]"><p class="text-[#b39c4d] text-3xl ml-3">Popular Movies</p> <div class="w-full h-[2px] bg-[#b39c4d] px-4 mt-5"></div></div>
+  <mat-card *ngFor="let movie of movies" [routerLink]="'/details/' + movie.id">
+    <mat-card-content>
+      <img [src]="posterUrl + movie.poster_path" class="" />
+
+      <section class="litleDetails">
+        <p class="mx-8 text-wrap">
+          {{ movie.title }}
+        </p>
+
+        <div class="movieInfo">
+          <section>
+
+            <button
+            mat-stroked-button
+            matTooltip="Release Date"
+            matTooltipPosition="below"
+            style="color: #eae2b7"
+            >
+            {{ movie.release_date }}
+          </button>
+        </section>
+          
+          <span class="dot"></span>
+
+          <button
+            mat-stroked-button
+            matTooltip="Score"
+            matTooltipPosition="below"
+            style="color: #eae2b7"
+            class="flex flex-row-reverse gap-2 items-center"
+          >
+            {{ movie.vote_average }} <mat-icon fontIcon="star"></mat-icon>
+          </button>
+        </div>
+      </section>
+    </mat-card-content>
+  </mat-card>
+</div>

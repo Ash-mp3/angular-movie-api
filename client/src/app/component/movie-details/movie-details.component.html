@@ -1,1 +1,92 @@
-<p>movie-details works!</p>
+<app-navbar></app-navbar>
+<div *ngIf="movie  && !isLoading" class="flex flex-col">
+    <div class="movie-details-page flex justify-center mt-16">
+
+        <!-- SideNav -->
+        <div class="sideNav-container">
+            <div #navRef class="sideNav nav-animation">
+                <h1 class="nav-title">Other Movies you might like</h1>
+
+                <div 
+                    *ngFor="let movie of similarMovies; let index = index"
+                    [routerLink]="'/details/' + movie.id" 
+                    class="movie-img my-1"
+                    style="--animation-delay: {{index}}s;"
+                >
+                <img class="sidenav-movie-img" [src]="posterUrl + movie.poster_path">
+                </div>
+            </div>
+        </div>
+     
+        <!-- display the review section up here for larger devices -->
+        <app-review-section *ngIf="isSmallScreen">
+        </app-review-section>
+
+
+        <!-- movie card -->
+        <div *ngIf="movie" class="movie-card">   
+            <div class="movie-img-container">
+                <img class="w-70 selected-movie-img" [src]="posterUrl + movie.poster_path">
+            </div>
+
+            <mat-card class="movie-overview text-xl">
+                <div class="flex flex-col items-center">
+                    <h1 class="title">{{movie.title}}</h1>
+                    <div class="movie-details flex">
+                        <h4 class="detail">
+                            Release Date: <span class="text-nowrap black">{{movie.release_date}}</span>
+                        </h4>
+                        <h4 class="detail">
+                            Rating: <span
+                            [classList]="
+                            movie.vote_average > 7.5 ? 'green' :
+                            movie.vote_average > 6 ? 'orange' :
+                            'red'
+                            "
+                            >{{movie.vote_average}}</span>
+                        </h4>
+                    </div>
+                    <div class="movie-buttons">
+                        <div class="detail">
+                            <button mat-flat-button *ngIf="hasSeenMovie" color="primary" (click)="toggleHasSeenMovie(movie.id)">
+                                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="movie"></mat-icon>
+                                <span>
+                                    Seen this movie
+                                    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="done"></mat-icon>
+                                </span>
+                            </button>
+                            <button mat-button *ngIf="!hasSeenMovie" color="primary" (click)="toggleHasSeenMovie(movie.id)">
+                                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="movie"></mat-icon>
+                                Seen this movie?
+                            </button>
+
+                            <button mat-flat-button *ngIf="isInWatchList" color="primary" (click)="toggleIsInWatchlist(movie.id)">
+                                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="movie"></mat-icon>
+                                <span>
+                                    Watchlist
+                                    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="done"></mat-icon>
+                                </span>
+                            </button>
+                            <button mat-button *ngIf="!isInWatchList" color="primary" (click)="toggleIsInWatchlist(movie.id)">
+                                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="movie"></mat-icon>
+                                Watchlist
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                    {{movie.overview}}
+            </mat-card>
+        </div>
+   </div>
+
+
+   <!-- display the review section down here for mobile devices -->
+    <app-review-section *ngIf="!isSmallScreen">
+    </app-review-section>
+
+</div>
+
+<div *ngIf="isLoading">
+    loading...
+</div>
+

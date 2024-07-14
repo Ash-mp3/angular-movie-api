@@ -1,0 +1,67 @@
+* {
+    font-size: 20px
+}
+
+.review-section{
+    @apply bg-lightBlack text-secondaryAccent flex flex-col items-center;
+
+}
+
+.star-icon{
+    width: 50px;
+    height: auto;
+    font-size: 36px;
+}
+.star-ratings{
+    margin-bottom: 16px;
+    text-align: center;
+    text-wrap: nowrap;
+}
+.gray{
+    color: gray;
+}
+.rating-title{
+    @apply text-4xl p-6 text-center font-bold
+}
+
+#commentForm {
+    position: relative;
+}
+
+#commentForm button {
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+}
+
+
+.comment{
+    background-color: rgb(239, 239, 239);
+    width: 80vw;
+    margin: 15px;
+    padding: 15px;
+    color: black;
+}
+.comment-title{
+    font-weight: bold;
+    font-size: 24px;
+
+    @apply border-b-lightBlack border-b-4;
+}
+mat-form-field{
+    width: 80vw;
+}
+
+textarea{
+    height: 200px !important;
+}
+
+.comment-star-icon{
+    width: 20px;
+    height: auto;
+    font-size: 20px;
+}
+
+@media screen and (max-width: 400px){
+    
+}
