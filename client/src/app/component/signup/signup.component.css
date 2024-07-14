@@ -50,6 +50,9 @@ h1 {
     color: white;
 }
 
+mat-error {
+    color: red;
+}
 
 .cardActions {
     height: 40%;

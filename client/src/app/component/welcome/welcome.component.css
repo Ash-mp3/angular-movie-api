@@ -8,9 +8,12 @@
 
 .tabGroup {
     border-radius: 10px;
-    
 }
 
 .loginTab:first-child {
     height: 100%;
+}
+
+.mdc-tab__text-label{
+    @apply text-secondaryAccent
 }

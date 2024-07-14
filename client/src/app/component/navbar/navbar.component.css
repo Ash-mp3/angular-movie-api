@@ -8,3 +8,4 @@ span{
 mat-toolbar{
     @apply flex justify-between w-full fixed z-10;
 }
+

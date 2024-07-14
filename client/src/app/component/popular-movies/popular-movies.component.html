@@ -3,6 +3,7 @@
   <app-search></app-search>
 </div>
 <div class="moviesContainer">
+  <div class="w-full h-[10%]"><p class="text-[#b39c4d] text-3xl ml-3">Popular Movies</p> <div class="w-full h-[2px] bg-[#b39c4d] px-4 mt-5"></div></div>
   <mat-card *ngFor="let movie of movies" [routerLink]="'/details/' + movie.id">
     <mat-card-content>
       <img [src]="posterUrl + movie.poster_path" class="" />

@@ -3,11 +3,7 @@ import { MovieDetailsComponent } from './component/movie-details/movie-details.c
 import { PopularMoviesComponent } from './component/popular-movies/popular-movies.component';
 import { WatchlistComponent } from './component/watchlist/watchlist.component';
 import { WelcomeComponent } from './component/welcome/welcome.component';
-import {  redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
 import { authGuard } from './core/auth.guard';
-
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
-const redirectLoggedInToPopular = () => redirectLoggedInTo(['popular']);
 
 export const routes: Routes = [
     {path: 'login', component: WelcomeComponent },

@@ -1,9 +1,22 @@
 <form class="searchContainer">
-    <input class="search" list="searchOptions" (input)="onquery($event)" type="text" placeholder="Search..." />
-    <button class="searchButton"><mat-icon fontIcon="search"></mat-icon></button>
-  </form>
-  
-  <datalist id="searchOptions">
-    <option *ngFor="let movie of movies.results" value="{{movie.title}}">{{movie.title}} {{movie.release_date}}</option>
-    <option #noMovie value="">No Movies Found!</option>
-  </datalist>
+  <input
+    class="search"
+    list="searchOptions"
+    (input)="onquery($event)"
+    [matAutocomplete]="auto"
+    type="text"
+    placeholder="Search..."
+  />
+  <button class="searchButton"><mat-icon fontIcon="search"></mat-icon></button>
+</form>
+
+<!-- <datalist id="searchOptions">
+  <option *ngFor="let movie of movies" value="{{ movie.title }}">
+    {{ movie.title }} {{ movie.release_date }}
+  </option>
+  <option #noMovie>No Movies Found!</option>
+</datalist> -->
+
+<mat-autocomplete #auto="matAutocomplete" (optionSelected)="toDetails($event)">
+  <mat-option *ngFor="let movie of movies" [value]="movie.id">{{movie.title}} {{movie.release_date}}</mat-option>
+</mat-autocomplete>

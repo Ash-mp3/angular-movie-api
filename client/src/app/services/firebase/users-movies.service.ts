@@ -28,7 +28,6 @@ export class UsersMoviesService {
 	initUserData(): void {
 		this.uid = this.auth.currentUser.uid;
         this.updateUserData();
-        console.log()
 	}
 
     //this is called after every database update so the client data matchs the database
