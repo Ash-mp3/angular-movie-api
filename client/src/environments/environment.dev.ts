@@ -1,5 +1,5 @@
 export const environment = {
-  apiUrl: 'http://localhost:8000',
+  apiUrl: 'https://angular-movie-api.onrender.com',
   production: false,
   firebaseConfig: {
     apiKey: 'AIzaSyBXvc8NZ_NeYUt3URa6TCsOLEGXXNIf1Tg',
