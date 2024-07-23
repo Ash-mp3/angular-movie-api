@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "source": "./dist/client/browser",
+    "source": ".",
     "ignore": [
       "firebase.json",
       "**/.*",

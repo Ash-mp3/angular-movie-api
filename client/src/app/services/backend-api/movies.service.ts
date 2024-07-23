@@ -14,6 +14,7 @@ export class MoviesService {
 
 
   getMovies() {
+    console.log(this.apiUrl)
     const url = `${this.apiUrl}/api/getMovies`
     const result = this.http.get<any>(url)
     return result
