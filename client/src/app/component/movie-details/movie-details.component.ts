@@ -89,8 +89,6 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
 	}
 
 	ngAfterViewInit(): void {
-		this.animateNavbar();
-
 		
 		window.addEventListener("resize", () => {
 			this.isSmallScreen = window.innerWidth < 731 ? true : false;
@@ -108,7 +106,6 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
 			this.isSmallScreen = window.innerWidth < 731 ? true : false;
 
 			this.getNewPageContents();
-			this.animateNavbar();
 
 			if (this.isSmallScreen) {
 				window.scrollTo({ top: 0 });
@@ -116,20 +113,6 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit {
 		}
 	});
 	}
-
-	//animate the side navbar
-	animateNavbar() {
-		//only animate if side nav exists
-		if(this.sideNav){
-			const sideNavHtml = this.sideNav.nativeElement;
-			sideNavHtml.classList.remove("nav-animation");
-	
-			setTimeout(() => {
-				sideNavHtml.classList.add("nav-animation");
-			});
-		}
-	}
-
 
     toggleHasSeenMovie(movieId: string) {
         const typeOfList = 'watched'
